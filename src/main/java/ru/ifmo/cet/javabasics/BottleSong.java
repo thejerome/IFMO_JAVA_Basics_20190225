@@ -31,13 +31,44 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
+    int portion;
 
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        portion = bottleTakenAtOnce;
+        if (bottleTakenAtOnce <= 0 || bottleTakenAtOnce > 99) {
+            try {
+                throw new IllegalArgumentException();
+            } catch (IllegalArgumentException e) {
+                portion = 0;
+                //System.out.println("no Songs");
+            }
+        }
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        int beerNum = portion;
+        String song = null;
+        if (beerNum != 0) {
+            song = "99 bottles of beer on the wall, 99 bottles of beer.\n";
+            while (beerNum > 0) {
+                if (beerNum >= portion) {
+                    beerNum = beerNum - portion;
+                } else {
+                    portion = beerNum % portion;
+                    beerNum = 0;
+                }
+                Translator i2s = new Translator(portion);
+                String number = i2s.num2str(true);
+                song = song + "Take " + number + " down and pass around, ";
+                if (beerNum > 0) {
+                    song = song + beerNum + " bottles of beer on the wall.\n";
+                } else {
+                    song = song + " no more bottles of beer on the wall.\n" +
+                            "No more bottles of beer on the wall, no more bottles of beer.\n" +
+                            "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
+                }
+            }
+        }
+        return song;
     }
 }
