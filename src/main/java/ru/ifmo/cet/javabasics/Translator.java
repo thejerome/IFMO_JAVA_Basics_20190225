@@ -44,6 +44,18 @@ public class Translator {
     }
 
     /**
+     * <br/>     * Склоняем словоформу<br/>     * @param n Long количество объектов<br/>     * @param f1 String вариант словоформы для одного объекта<br/>     * @param f2 String вариант словоформы для двух объектов<br/>     * @param f5 String вариант словоформы для пяти объектов<br/>     * @return String правильный вариант словоформы для указанного количества объектов<br/>
+     */
+    public static String morph(long n, String f1, String f2, String f5) {
+        n = Math.abs(n) % 100;
+        long n1 = n % 10;
+        if (n > 10 && n < 20) return f5;
+        if (n1 > 1 && n1 < 5) return f2;
+        if (n1 == 1) return f1;
+        return f5;
+    }
+
+    /**
      * <br/>     * Вернуть сумму как строку<br/>
      */
     public String asString() {
@@ -66,11 +78,11 @@ public class Translator {
                 {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"},
         };
         String[] str100 = {"", "one hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred"};
-        String[] str11 = {"", "ten", "eleven", "twelve", "thirtheen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
-        String[] str10 = {"", "ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+        String[] str11 = {"", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
+        String[] str10 = {"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
         String[][] forms = {
                 {"копейка", "копейки", "копеек", "1"},
-                {"bottle", "bottles", "bottles", "0"},
+                {"", "", "", "0"},
                 {"тысяча", "тысячи", "тысяч", "1"},
                 {"миллион", "миллиона", "миллионов", "0"},
                 {"миллиард", "миллиарда", "миллиардов", "0"},
@@ -146,17 +158,5 @@ public class Translator {
             o = o.replaceAll(" {2,}", " ");
         }
         return o;
-    }
-
-    /**
-     * <br/>     * Склоняем словоформу<br/>     * @param n Long количество объектов<br/>     * @param f1 String вариант словоформы для одного объекта<br/>     * @param f2 String вариант словоформы для двух объектов<br/>     * @param f5 String вариант словоформы для пяти объектов<br/>     * @return String правильный вариант словоформы для указанного количества объектов<br/>
-     */
-    public static String morph(long n, String f1, String f2, String f5) {
-        n = Math.abs(n) % 100;
-        long n1 = n % 10;
-        if (n > 10 && n < 20) return f5;
-        if (n1 > 1 && n1 < 5) return f2;
-        if (n1 == 1) return f1;
-        return f5;
     }
 }
