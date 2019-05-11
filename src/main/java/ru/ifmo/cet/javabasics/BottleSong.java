@@ -1,18 +1,18 @@
 package ru.ifmo.cet.javabasics;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class BottleSong {
 
   int bottleTakenAtOnce;
 
-  public BottleSong(int bottleTakenAtOnce) {
-    // TODO
+  public BottleSong (int bottleTakenAtOnce) {
     this.bottleTakenAtOnce = bottleTakenAtOnce;
   }
 
   public String getBottleSongLyrics() {
-    // TODO
-    // throw new UnsupportedOperationException();
 
     Map<Integer, String> map = new HashMap<Integer, String>();
 
@@ -48,41 +48,39 @@ public class BottleSong {
     String a = "";
     int bottles = 99;
     if (bottleTakenAtOnce <= 99 && bottleTakenAtOnce >= 1) {
-      int c = bottles % bottleTakenAtOnce;
       while (bottles - bottleTakenAtOnce > 0) {
-        a += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer\nTake ";
+        a += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\nTake ";
         String number = "";
         if (map.get(bottleTakenAtOnce) != null){
           number = map.get(bottleTakenAtOnce);
         } else {
-          number = map.get(bottleTakenAtOnce - bottleTakenAtOnce%10) + map.get(bottleTakenAtOnce%10);
+          number = map.get(bottleTakenAtOnce - bottleTakenAtOnce%10) + " " + map.get(bottleTakenAtOnce%10);
         }
-        a += number + " down, pass it around, " + (bottles - bottleTakenAtOnce) + " bottles of beer\n";
+        if (bottles - bottleTakenAtOnce != 1)
+          a += number + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottles of beer on the wall.\n";
+        else
+          a += number + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottle of beer on the wall.\n";
         bottles -= bottleTakenAtOnce;
       }
 
 
       if (bottles != 1)
-        a += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer\n";
+        a += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
       else
-        a += bottles + " bottle of beer on the wall, " + bottles + " bottle of beer\n";
+        a += bottles + " bottle of beer on the wall, " + bottles + " bottle of beer.\n";
 
       a += "Take ";
 
       String number = "";
-        if (map.get(bottles) != null){
-          number = map.get(bottles);
-        } else {
-          number = map.get(bottles - bottles%10) + map.get(bottles%10);
-        }
-        a += number + " down, pass it around, no more bottles of beer on the wall\n";
+      if (map.get(bottles) != null){
+        number = map.get(bottles);
+      } else {
+        number = map.get(bottles - bottles%10) + " " + map.get(bottles%10);
+      }
+      a += number + " down and pass around, no more bottles of beer on the wall.\n";
 
-      a += "No more bottles of beer on the wall, no more bottles of beer\nGo to the store and buy some more, 99 bottles of beer on the wall";
+      a += "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
       return a;
-    } else
-      throw new IllegalArgumentException();
-
+    } else throw new IllegalArgumentException();
   }
-
-
 }
