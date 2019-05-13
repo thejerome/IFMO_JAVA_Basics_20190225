@@ -39,6 +39,7 @@ public class BottleSong {
     private int bottles = 99;
     private String text = "";
     private String bottle_s;
+    private Map<Integer, String> count = new HashMap<>();
 
     public BottleSong(int bottleTakenAtOnce) {
         //TODO
@@ -46,7 +47,7 @@ public class BottleSong {
 
     }
 
-    Map<Integer, String> count = new HashMap<>();
+
 
     public void setCount() {
         count.put(1, "one");
