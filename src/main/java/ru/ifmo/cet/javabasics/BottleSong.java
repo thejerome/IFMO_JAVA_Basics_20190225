@@ -30,14 +30,94 @@ package ru.ifmo.cet.javabasics;
  * Значение передается в качестве параметра конструктора
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
-public class BottleSong {
+public class BottleSong
+{
+    private final int bottleTakenAtOnce;
 
-    public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+    public BottleSong(int bottleTakenAtOnce)
+    {
+        this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
-    public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+    public String getBottleSongLyrics()
+    {
+        StringBuilder builder = new StringBuilder();
+
+        if(bottleTakenAtOnce == 99) return "99 bottles of beer on the wall, 99 bottles of beer\n" +
+                "Take ninety nine down, pass it around, no more bottles of beer on the wall\n" +
+                "Go to the store and buy some more, 99 bottles of beer on the wall";
+
+        for (int i = 99; i > bottleTakenAtOnce; i-=bottleTakenAtOnce)
+        {
+            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer\n" +
+                    "Take%s down, pass it around, %d bottles of beer\n", i, i, getNumberWord(bottleTakenAtOnce), i - bottleTakenAtOnce));
+        }
+        if(bottleTakenAtOnce != 1)  builder.append(String.format("%d bottle of beer on the wall, %d bottle of beer\n" +
+                "Take%s down, pass it around, no more bottles of beer on the wall\n" +
+                "No more bottles of beer on the wall, no more bottles of beer.\n" +
+                "Go to the store and buy some more, 99 bottles of beer on the wall", 99%bottleTakenAtOnce, 99%bottleTakenAtOnce, getNumberWord(99%bottleTakenAtOnce)));
+
+        else builder.append("1 bottle of beer on the wall, 1 bottle of beer\n" +
+                "Take one down, pass it around, no more bottles of beer on the wall\n" +
+                "No more bottles of beer on the wall, no more bottles of beer.\n" +
+                "Go to the store and buy some more, 99 bottles of beer on the wall");
+
+        return builder.toString();
     }
+
+    private static String getWordNumber(int number)
+    {
+        String soFar;
+
+        if(number == 0) return "zero";
+
+        if (number % 100 < 20){
+            soFar = numNames[number % 100];
+            number /= 100;
+        }
+        else {
+            soFar = numNames[number % 10];
+            number /= 10;
+
+            soFar = tensNames[number % 10] + soFar;
+            number /= 10;
+        }
+        if (number == 0) return soFar;
+        return numNames[number] + " hundred" + soFar;
+    }
+    private static final String[] tensNames = {
+            "",
+            " ten",
+            " twenty",
+            " thirty",
+            " forty",
+            " fifty",
+            " sixty",
+            " seventy",
+            " eighty",
+            " ninety"
+    };
+
+    private static final String[] numNames = {
+            "",
+            " one",
+            " two",
+            " three",
+            " four",
+            " five",
+            " six",
+            " seven",
+            " eight",
+            " nine",
+            " ten",
+            " eleven",
+            " twelve",
+            " thirteen",
+            " fourteen",
+            " fifteen",
+            " sixteen",
+            " seventeen",
+            " eighteen",
+            " nineteen"
+    };
 }
