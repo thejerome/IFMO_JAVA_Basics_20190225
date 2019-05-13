@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class BottleSong {
 
-    int bottleTakenAtOnce;
+    private final int bottleTakenAtOnce;
 
     public BottleSong (int bottleTakenAtOnce) {
         this.bottleTakenAtOnce = bottleTakenAtOnce;
