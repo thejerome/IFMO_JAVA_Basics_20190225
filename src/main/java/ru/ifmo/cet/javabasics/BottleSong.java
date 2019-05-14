@@ -43,13 +43,10 @@ public class BottleSong {
     private StringBuilder resultSong = new StringBuilder();
 
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
         this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
         if(bottleTakenAtOnce<=0 || bottleTakenAtOnce>99) throw new IllegalArgumentException();
         else{
             while(db > 0){
@@ -91,5 +88,4 @@ public class BottleSong {
         if(db == 0) return "no more";
         else return String.valueOf(db);
     }
-}
 }
