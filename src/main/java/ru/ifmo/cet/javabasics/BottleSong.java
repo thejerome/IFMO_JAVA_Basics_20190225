@@ -31,13 +31,41 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
+    private static final String[] decimalWords = {"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    private static final String[] fromOneToNineteenWords = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    private final int took;
+
+    private String toWords(int num) {
+        if (num <= 19)
+            return fromOneToNineteenWords[num];
+        else if (num % 10 == 0)
+            return decimalWords[num / 10];
+        else
+            return decimalWords[num / 10] + " " + fromOneToNineteenWords[num % 10];
+    }
 
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        took = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        if (took <= 0 || took > 99) {
+            throw new IllegalArgumentException();
+        }
+
+        StringBuilder result = new StringBuilder();
+        int currentBottle;
+
+        for (currentBottle = 99; currentBottle > took; currentBottle -= took) {
+            result.append(currentBottle + " bottles of beer on the wall, " + currentBottle + " bottles of beer.\n");
+            result.append("Take " + toWords(took) + " down and pass around, " + (currentBottle - took) + (currentBottle - took == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
+        }
+
+        result.append(currentBottle + (currentBottle == 1 ? " bottle" : " bottles") + " of beer on the wall, " + currentBottle + (currentBottle == 1 ? " bottle" : " bottles") + " of beer.\n");
+        result.append("Take " + toWords(currentBottle) + " down and pass around, no more bottles of beer on the wall.\n");
+
+        result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+
+        return result.toString();
     }
 }
