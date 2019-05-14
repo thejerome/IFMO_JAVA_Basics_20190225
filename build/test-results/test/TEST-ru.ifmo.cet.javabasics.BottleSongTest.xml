@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.ifmo.cet.javabasics.BottleSongTest" tests="33" skipped="0" failures="0" errors="0" timestamp="2019-05-14T21:44:45" hostname="MorozSPC" time="0.069">
+  <properties/>
+  <testcase name="test100()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.01"/>
+  <testcase name="test672()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test10()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test11()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test12()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test17()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test20()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test21()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test24()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test30()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test40()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test50()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test55()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test60()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test61()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test70()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test78()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test80()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test86()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test90()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="tes99()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test0()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test1()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.003"/>
+  <testcase name="test2()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test3()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.0"/>
+  <testcase name="test4()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test5()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test6()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test7()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test8()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <testcase name="test9()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.002"/>
+  <testcase name="testMinus79()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.002"/>
+  <testcase name="testMinus1()" classname="ru.ifmo.cet.javabasics.BottleSongTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
