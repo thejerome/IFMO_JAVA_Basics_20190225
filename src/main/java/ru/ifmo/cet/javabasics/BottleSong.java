@@ -31,12 +31,13 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
+
+    final private int step;
+
     public BottleSong(int bottleTakenAtOnce) {
         //TODO
         step = bottleTakenAtOnce;
     }
-    final private int step;
-
     public String getBottleSongLyrics() {
         //TODO
         //throw new UnsupportedOperationException();
@@ -45,21 +46,21 @@ public class BottleSong {
         }
         int count = 99;
         StringBuilder result = new StringBuilder("");
-        String decrement = GetWordsNumber(step);
+        String decrement = getWordsNumber(step);
         while (count - this.step > 0 ){
-            result.append(String.valueOf(count) + " " + GetCorrectForm(count)+ " of beer on the wall, " + String.valueOf(count) + " " + GetCorrectForm(count) + " of beer." + '\n');
+            result.append(String.valueOf(count) + " " + getCorrectForm(count)+ " of beer on the wall, " + String.valueOf(count) + " " + getCorrectForm(count) + " of beer." + '\n');
             count -= step;
-            result.append("Take " + decrement + " down and pass around, " + String.valueOf(count) + " " + GetCorrectForm(count) +" of beer on the wall." + '\n');
+            result.append("Take " + decrement + " down and pass around, " + String.valueOf(count) + " " + getCorrectForm(count) +" of beer on the wall." + '\n');
         }
 
-        result.append(String.valueOf(count) + " " + GetCorrectForm(count) + " of beer on the wall, " + String.valueOf(count) + " " + GetCorrectForm(count) + " of beer." + '\n');
-        result.append("Take " + GetWordsNumber(count) + " down and pass around, no more bottles of beer on the wall."+ '\n');
+        result.append(String.valueOf(count) + " " + getCorrectForm(count) + " of beer on the wall, " + String.valueOf(count) + " " + getCorrectForm(count) + " of beer." + '\n');
+        result.append("Take " + getWordsNumber(count) + " down and pass around, no more bottles of beer on the wall."+ '\n');
         result.append("No more bottles of beer on the wall, no more bottles of beer."+ '\n');
         result.append("Go to the store and buy some more, 99 bottles of beer on the wall." + '\n');
         return result.toString();
 
     }
-    public String GetWordsNumber(int number){
+    public String getWordsNumber(int number){
         String [] tens = {"","ten", "twenty","thirty", "forty",
                 "fifty", "sixty", "seventy", "eighty", "ninety"};
         String [] units = {"","one", "two","three", "four",
@@ -78,7 +79,7 @@ public class BottleSong {
         return tens[number / 10] + ' ' + units[number % 10];
     }
 
-    private String GetCorrectForm(int amount){
+    private String getCorrectForm(int amount){
         return amount == 1 ? "bottle":"bottles";
     }
 
