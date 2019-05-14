@@ -33,7 +33,7 @@ package ru.ifmo.cet.javabasics;
 public class BottleSong {
     private static final int originalBottles = 99;
 
-    private static final String[] beforeTen = {
+    private static final String[] beforeNine = {
             "no more",
             "one",
             "two",
@@ -45,7 +45,7 @@ public class BottleSong {
             "eight",
             "nine"
     };
-    private static final String[] beforeTwelve = {
+    private static final String[] beforeNineteen = {
             "eleven",
             "twelve",
             "thirteen",
@@ -65,57 +65,61 @@ public class BottleSong {
             "sixty",
             "seventy",
             "eighty",
-            "ninety"
-    };
+            "ninety"};
 
     private int bottleTakenAtOnce;
-    private int chislo = originalBottles;
+    private int db = originalBottles;
     private String bottleTakenAtOnceString;
     private StringBuilder resultSong = new StringBuilder();
 
     public BottleSong(int bottleTakenAtOnce) {
+        //TODO
         this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
-    public String getBottleSongLyrics() {if(bottleTakenAtOnce<=0 || bottleTakenAtOnce>99) throw new IllegalArgumentException();
-    else{
-        while(chislo > 0){
-            resultSong.append(chislo).append(getBottleString(chislo)).append("of beer on the wall, ").append(chislo).append(getBottleString(chislo)).append("of beer.\n");
-            if(bottleTakenAtOnce> chislo){
-                bottleTakenAtOnceString = getBottleTakenAtOnceString(chislo);
-                chislo = 0;
+    public String getBottleSongLyrics() {
+        //TODO
+        throw new UnsupportedOperationException();
+        if(bottleTakenAtOnce<=0 || bottleTakenAtOnce>99) throw new IllegalArgumentException();
+        else{
+            while(db > 0){
+                resultSong.append(db).append(getBottleString(db)).append("of beer on the wall, ").append(db).append(getBottleString(db)).append("of beer.\n");
+                if(bottleTakenAtOnce>db){
+                    bottleTakenAtOnceString = getBottleTakenAtOnceString(db);
+                    db = 0;
+                }
+                else{
+                    bottleTakenAtOnceString = getBottleTakenAtOnceString(bottleTakenAtOnce);
+                    db = db- bottleTakenAtOnce;
+                }
+                resultSong.append("Take ").append(bottleTakenAtOnceString).append(" down and pass around, ").append(getDbString(db)).append(getBottleString(db)).append("of beer on the wall.\n");
             }
-            else{
-                bottleTakenAtOnceString = getBottleTakenAtOnceString(bottleTakenAtOnce);
-                chislo = chislo - bottleTakenAtOnce;
-            }
-            resultSong.append("Take ").append(bottleTakenAtOnceString).append(" down and pass around, ").append(getDbString(chislo)).append(getBottleString(chislo)).append("of beer on the wall.\n");
+            resultSong.append("No more bottles of beer on the wall, no more bottles of beer.\n").append("Go to the store and buy some more, 99 bottles of beer on the wall.\n");
+            return resultSong.toString();
         }
-        resultSong.append("No more bottles of beer on the wall, no more bottles of beer.\n").append("Go to the store and buy some more, 99 bottles of beer on the wall.\n");
-        return resultSong.toString();
-    }
     }
 
     private String getBottleTakenAtOnceString(int bottleTakenAtOnce){
         if(bottleTakenAtOnce>=0 && bottleTakenAtOnce<=9){
-            return beforeTen[bottleTakenAtOnce];
+            return beforeNine[bottleTakenAtOnce];
         }
         else if(bottleTakenAtOnce>=11 && bottleTakenAtOnce<=19){
-            return beforeTwelve[bottleTakenAtOnce%11];
+            return beforeNineteen[bottleTakenAtOnce%11];
         }
         else if(bottleTakenAtOnce % 10 == 0){
             return beforeNinety[bottleTakenAtOnce/10-1];
         }
-        else return beforeNinety[bottleTakenAtOnce/10-1] + " " + beforeTen[bottleTakenAtOnce % 10];
+        else return beforeNinety[bottleTakenAtOnce/10-1] + " " + beforeNine[bottleTakenAtOnce % 10];
     }
 
-    private String getBottleString(int chislo){
-        if(chislo == 1) return " bottle ";
+    private String getBottleString(int db){
+        if(db == 1) return " bottle ";
         else return " bottles ";
     }
 
-    private String getChisloString(int chislo){
-        if(chislo == 0) return "no more";
-        else return String.valueOf(chislo);
+    private String getDbString(int db){
+        if(db == 0) return "no more";
+        else return String.valueOf(db);
     }
+}
 }
