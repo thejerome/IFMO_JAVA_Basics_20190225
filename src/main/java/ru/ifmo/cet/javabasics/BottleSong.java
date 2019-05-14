@@ -31,13 +31,46 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
+    private  int bottleTakenAtOnce;
+    private int bottles=99;
+    private String txt="";
+    private static  String[][] Numbers={
+            {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"},
+            {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"}};
+
+    private String Words(int n){
+        if(n <=19)
+            return Numbers[1][n];
+        else if (n % 10 == 0)
+            return Numbers[0][n/10];
+        else
+            return Numbers[0][n/10]+" "+Numbers[1][n%10];
+    }
 
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
-    }
+        if (bottleTakenAtOnce >=1 && bottleTakenAtOnce <=99) {
+            while (bottles - bottleTakenAtOnce > 0) {
+                txt += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                if (bottles - bottleTakenAtOnce != 1)
+                    txt += "Take "+ Words(bottleTakenAtOnce) + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottles of beer on the wall.\n";
+                else
+                    txt += "Take "+ Words(bottleTakenAtOnce) + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottle of beer on the wall.\n";
+                bottles -= bottleTakenAtOnce;}
+
+            if (bottles != 1)
+                txt += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+            else{
+                txt += bottles + " bottle of beer on the wall, " + bottles + " bottle of beer.\n";}
+            if(bottleTakenAtOnce> bottles){
+                bottleTakenAtOnce=bottles;
+            }
+            txt += "Take " + Words(bottleTakenAtOnce) + " down and pass around, no more bottles of beer on the wall.\n";
+
+            txt += "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
+            return txt;}
+        else throw new UnsupportedOperationException();}
 }
