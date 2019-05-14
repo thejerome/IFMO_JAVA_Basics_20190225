@@ -1,7 +1,5 @@
 package ru.ifmo.cet.javabasics;
 
-import java.lang.StringBuilder;
-
 /**
  * Нужно реализовать констурктор и метод, возвращающий слова песни про бутылки на стене.
  * <p>
@@ -52,7 +50,9 @@ public class BottleSong {
         else {
 
             String btaoStr = numToWords(bottlesTakenAtOnce);
-            String part, line1, line2;
+            String part;
+            String line1;
+            String line2;
 
             for(int bottles = 99; bottles > 0;) {
                     part = bottles + ((bottles == 1) ? " bottle" : " bottles") + " of beer";
@@ -82,18 +82,10 @@ public class BottleSong {
     }
 
     private String numToWords(int num) {
-        StringBuilder words = new StringBuilder();
-        if(num == 0) return "no more";
-        if(num < 10) words.append(UNITS[num]);
-        else if(num > 10 && num < 20) words.append(TEENS[(num % 10) - 1]);
-        else {
-            words.append(TENS[(num / 10)]);
-            if(num % 10 != 0) {
-                words.append(" ");
-                words.append(UNITS[num % 10]);
-            }
-            return words.toString();
-        }
-        return words.toString();
+        if     (num == 0)      return "no more";
+        if     (num < 10)      return UNITS[num % 10];
+        else if(num % 10 == 0) return TENS [num / 10];
+        else if(num < 20)      return TEENS[(num-1) % 10];
+        else                   return TENS [num / 10] + " " + UNITS[num % 10];
     }
 }
