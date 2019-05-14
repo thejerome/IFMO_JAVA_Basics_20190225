@@ -1,4 +1,4 @@
-﻿package ru.ifmo.cet.javabasics;
+package ru.ifmo.cet.javabasics;
 
 /**
  * Нужно реализовать констурктор и метод, возвращающий слова песни про бутылки на стене.
