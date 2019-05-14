@@ -32,56 +32,6 @@ package ru.ifmo.cet.javabasics;
  */
 class BottleSong
 {
-    private final int bottleTakenAtOnce;
-
-    BottleSong(int bottleTakenAtOnce)
-    {
-        this.bottleTakenAtOnce = bottleTakenAtOnce;
-    }
-
-    String getBottleSongLyrics()
-    {
-        if(bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99 )
-        {
-            throw new IllegalArgumentException();
-        }
-
-        StringBuilder builder = new StringBuilder();
-        int counter;
-
-        for (counter = 99; counter > bottleTakenAtOnce; counter -= bottleTakenAtOnce)
-        {
-            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer.\n" +
-                            "Take%s down and pass around, %d%s of beer on the wall.\n",
-                    counter, counter, getWordNumber(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
-        }
-        builder.append(String.format("%d%s of beer on the wall, %d%s of beer.\n" +
-                "Take%s down and pass around, no more bottles of beer on the wall.\n" +
-                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getWordNumber(counter)));
-
-        return builder.toString();
-    }
-
-    private static String getWordNumber(int number)
-    {
-        String soFar;
-
-        if(number == 0) return "zero";
-
-        if (number % 100 < 20){
-            soFar = numNames[number % 100];
-            number /= 100;
-        }
-        else {
-            soFar = numNames[number % 10];
-            number /= 10;
-
-            soFar = tensNames[number % 10] + soFar;
-            number /= 10;
-        }
-        if (number == 0) return soFar;
-        return numNames[number] + " hundred" + soFar;
-    }
     private static final String[] tensNames = {
             "",
             " ten",
@@ -94,7 +44,6 @@ class BottleSong
             " eighty",
             " ninety"
     };
-
     private static final String[] numNames = {
             "",
             " one",
@@ -117,4 +66,55 @@ class BottleSong
             " eighteen",
             " nineteen"
     };
+    private final int bottleTakenAtOnce;
+
+    public BottleSong(int bottleTakenAtOnce)
+    {
+        this.bottleTakenAtOnce = bottleTakenAtOnce;
+    }
+
+    public String getBottleSongLyrics()
+    {
+        if(bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99 )
+        {
+            throw new IllegalArgumentException();
+        }
+
+        StringBuilder builder = new StringBuilder();
+        int counter;
+
+        for (counter = 99; counter > bottleTakenAtOnce; counter -= bottleTakenAtOnce)
+        {
+            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer.\n" +
+                            "Take%s down and pass around, %d%s of beer on the wall.\n",
+                    counter, counter, getWordNumber(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
+        }
+        builder.append(String.format("%d%s of beer on the wall, %d%s of beer.\n" +
+                "Take%s down and pass around, no more bottles of beer on the wall.\n" +
+                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getWordNumber(counter)));
+
+        return builder.toString();
+    }
+
+    private static String getWordNumber(int toStringNumber)
+    {
+        String soFar;
+
+        if(toStringNumber == 0) return "zero";
+
+        if (toStringNumber % 100 < 20){
+            soFar = numNames[toStringNumber % 100];
+            toStringNumber /= 100;
+        }
+        else {
+            soFar = numNames[toStringNumber % 10];
+            toStringNumber /= 10;
+
+            soFar = tensNames[toStringNumber % 10] + soFar;
+            toStringNumber /= 10;
+        }
+        if (toStringNumber == 0) return soFar;
+        return numNames[toStringNumber] + " hundred" + soFar;
+    }
+
 }
