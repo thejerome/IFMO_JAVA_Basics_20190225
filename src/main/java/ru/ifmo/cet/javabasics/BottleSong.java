@@ -42,25 +42,17 @@ public class BottleSong
     public String getBottleSongLyrics()
     {
         StringBuilder builder = new StringBuilder();
+        int counter;
 
-        if(bottleTakenAtOnce == 99) return "99 bottles of beer on the wall, 99 bottles of beer\n" +
-                "Take ninety nine down, pass it around, no more bottles of beer on the wall\n" +
-                "Go to the store and buy some more, 99 bottles of beer on the wall";
-
-        for (int i = 99; i > bottleTakenAtOnce; i-=bottleTakenAtOnce)
+        for (counter = 99; counter > bottleTakenAtOnce; counter -= bottleTakenAtOnce)
         {
-            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer\n" +
-                    "Take%s down, pass it around, %d bottles of beer\n", i, i, getNumberWord(bottleTakenAtOnce), i - bottleTakenAtOnce));
+            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer.\n" +
+                            "Take%s down and pass around, %d%s of beer on the wall.\n",
+                    counter, counter, getNumberWord(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
         }
-        if(bottleTakenAtOnce != 1)  builder.append(String.format("%d bottle of beer on the wall, %d bottle of beer\n" +
-                "Take%s down, pass it around, no more bottles of beer on the wall\n" +
-                "No more bottles of beer on the wall, no more bottles of beer.\n" +
-                "Go to the store and buy some more, 99 bottles of beer on the wall", 99%bottleTakenAtOnce, 99%bottleTakenAtOnce, getNumberWord(99%bottleTakenAtOnce)));
-
-        else builder.append("1 bottle of beer on the wall, 1 bottle of beer\n" +
-                "Take one down, pass it around, no more bottles of beer on the wall\n" +
-                "No more bottles of beer on the wall, no more bottles of beer.\n" +
-                "Go to the store and buy some more, 99 bottles of beer on the wall");
+        builder.append(String.format("%d%s of beer on the wall, %d%s of beer.\n" +
+                "Take%s down and pass around, no more bottles of beer on the wall.\n" +
+                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getNumberWord(counter)));
 
         return builder.toString();
     }
