@@ -30,17 +30,22 @@ package ru.ifmo.cet.javabasics;
  * Значение передается в качестве параметра конструктора
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
-public class BottleSong
+class BottleSong
 {
     private final int bottleTakenAtOnce;
 
-    public BottleSong(int bottleTakenAtOnce)
+    BottleSong(int bottleTakenAtOnce)
     {
         this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
-    public String getBottleSongLyrics()
+    String getBottleSongLyrics()
     {
+        if(bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99 )
+        {
+            throw new IllegalArgumentException();
+        }
+
         StringBuilder builder = new StringBuilder();
         int counter;
 
@@ -48,11 +53,11 @@ public class BottleSong
         {
             builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer.\n" +
                             "Take%s down and pass around, %d%s of beer on the wall.\n",
-                    counter, counter, getNumberWord(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
+                    counter, counter, getWordNumber(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
         }
         builder.append(String.format("%d%s of beer on the wall, %d%s of beer.\n" +
                 "Take%s down and pass around, no more bottles of beer on the wall.\n" +
-                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getNumberWord(counter)));
+                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getWordNumber(counter)));
 
         return builder.toString();
     }
