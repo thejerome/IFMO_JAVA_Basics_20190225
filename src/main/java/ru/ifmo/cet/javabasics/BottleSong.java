@@ -33,39 +33,9 @@ package ru.ifmo.cet.javabasics;
 public class BottleSong {
     private static final int originalBottles = 99;
 
-    private static final String[] beforeNine = {
-            "no more",
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine"
-    };
-    private static final String[] beforeNineteen = {
-            "eleven",
-            "twelve",
-            "thirteen",
-            "fourteen",
-            "fifteen",
-            "sixteen",
-            "seventeen",
-            "eighteen",
-            "nineteen"
-    };
-    private static final String[] beforeNinety = {
-            "ten",
-            "twenty",
-            "thirty",
-            "forty",
-            "fifty",
-            "sixty",
-            "seventy",
-            "eighty",
-            "ninety"};
+    private static final String[] zeroToNine = {"no more", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static final String[] elevenToNineteen = {"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+    private static final String[] tenToNinety = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
 
     private int bottleTakenAtOnce;
     private int db = originalBottles;
@@ -101,15 +71,15 @@ public class BottleSong {
 
     private String getBottleTakenAtOnceString(int bottleTakenAtOnce){
         if(bottleTakenAtOnce>=0 && bottleTakenAtOnce<=9){
-            return beforeNine[bottleTakenAtOnce];
+            return zeroToNine[bottleTakenAtOnce];
         }
         else if(bottleTakenAtOnce>=11 && bottleTakenAtOnce<=19){
-            return beforeNineteen[bottleTakenAtOnce%11];
+            return elevenToNineteen[bottleTakenAtOnce%11];
         }
         else if(bottleTakenAtOnce % 10 == 0){
-            return beforeNinety[bottleTakenAtOnce/10-1];
+            return tenToNinety[bottleTakenAtOnce/10-1];
         }
-        else return beforeNinety[bottleTakenAtOnce/10-1] + " " + beforeNine[bottleTakenAtOnce % 10];
+        else return tenToNinety[bottleTakenAtOnce/10-1] + " " + zeroToNine[bottleTakenAtOnce % 10];
     }
 
     private String getBottleString(int db){
