@@ -8,17 +8,29 @@ public class BottleSong
             "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
     private String TheSong = "";
-
+    private int
+            bottleTakenAtOnce = 0,
+            bottleTakenAtOncePrev = 0;
+	
     public BottleSong( int bottleTakenAtOnce )
     {
-        makeSong(bottleTakenAtOnce);
+        this.bottleTakenAtOnce = bottleTakenAtOnce;
+        this.bottleTakenAtOncePrev = 1 - bottleTakenAtOnce;
     }
 
-    public String getBottleSongLyrics() { return (TheSong == null ) ? "" : TheSong; }
+    public String getBottleSongLyrics()
+    {
+        if (bottleTakenAtOnce != bottleTakenAtOncePrev)
+            makeSong(bottleTakenAtOnce);
+        
+        return (TheSong == null) ? "" : TheSong;
+    }
 
     private void makeSong( int bottleTakenAtOnce ) {
         if (bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99)
             throw new IllegalArgumentException();
+
+        this.bottleTakenAtOncePrev = bottleTakenAtOnce;
 
         int bottlesLeft = 99;
         StringBuilder TheSongBuilder = new StringBuilder();
