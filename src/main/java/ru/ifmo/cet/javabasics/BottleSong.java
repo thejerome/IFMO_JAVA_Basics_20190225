@@ -33,21 +33,24 @@ package ru.ifmo.cet.javabasics;
 public class BottleSong
     {
 
-    private static String[] tens = {"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    private static String[] tens = {"ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-    private static String[] Twenty = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    private static String[] Twenty = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+
+
+       private int Taken;
 
     private String toWords(int num)
        {
         if (num <= 19)
-            return Twenty[num];
+            return Twenty[num - 1];
         else if (num % 10 == 0)
-            return tens[num / 10];
+            return tens[(num / 10) - 1];
         else
-            return tens[num / 10] + " " + Twenty[num % 10];
+            return tens[(num / 10) - 1] + " " + Twenty[(num % 10) - 1];
        }
 
-       private int Taken;
+
 
     public BottleSong(int bottleTakenAtOnce)
        {
@@ -67,19 +70,21 @@ public class BottleSong
         StringBuilder result = new StringBuilder();
 
 
-        int i;
-        for (i = 99; i > Taken; i -= Taken)
-           {
-            result.append(i + " bottles of beer on the wall, " + i + " bottles of beer.\n");
-            result.append("Take " + toWords(Taken) + " down and pass around, " + (i - Taken) + (i - Taken == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
-           }
+        int Count;
+        String TEMP = " bottles";
 
-        result.append(i + (i == 1 ? " bottle" : " bottles") + " of beer on the wall, " + i + (i == 1 ? " bottle" : " bottles") + " of beer.\n");
-        result.append("Take " + toWords(i) + " down and pass around, no more bottles of beer on the wall.\n");
+        for (Count = 99; Count > Taken; Count -= Taken) {
+            if (Count - Taken == 1) {
+                TEMP = " bottle";
+            }
+            result.append(Count + " bottles of beer on the wall, " + Count + " bottles of beer.\n");
+            result.append("Take " + toWords(Taken) + " down and pass around, " + (Count - Taken) + TEMP + " of beer on the wall.\n");
+        }
 
+        result.append(Count + TEMP + " of beer on the wall, " + Count + TEMP + " of beer.\n");
+        result.append("Take " + toWords(Count) + " down and pass around, no more bottles of beer on the wall.\n");
 
         result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
-
 
         return result.toString();
     }
