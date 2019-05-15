@@ -33,7 +33,6 @@ package ru.ifmo.cet.javabasics;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class BottleSong {
     int bottleTakenAtOnce;
