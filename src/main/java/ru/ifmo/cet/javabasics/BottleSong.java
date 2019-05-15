@@ -35,9 +35,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BottleSong {
-    int bottleTakenAtOnce;
+    private int bottlesTakenAtOnce;
     public BottleSong(int bottleTakenAtOnce) {
-        this.bottleTakenAtOnce = bottleTakenAtOnce;
+        this.bottlesTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
@@ -73,16 +73,16 @@ public class BottleSong {
 
         String s = "";
         int bottles = 99;
-        if (bottleTakenAtOnce > 0 && bottleTakenAtOnce < 100) {
-            while (bottles > bottleTakenAtOnce) {
+        if (bottlesTakenAtOnce > 0 && bottlesTakenAtOnce < 100) {
+            while (bottles > bottlesTakenAtOnce) {
                 s += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
                 s += "Take ";
-                if (m.get(bottleTakenAtOnce) != null) s += m.get(bottleTakenAtOnce);
-                else s += m.get(bottleTakenAtOnce/10*10) + ' ' + m.get(bottleTakenAtOnce%10);
-                s += " down and pass around, " + (bottles - bottleTakenAtOnce);
-                if (bottles - bottleTakenAtOnce == 1) s += " bottle of beer on the wall.\n";
+                if (m.get(bottlesTakenAtOnce) != null) s += m.get(bottlesTakenAtOnce);
+                else s += m.get(bottlesTakenAtOnce/10*10) + ' ' + m.get(bottlesTakenAtOnce%10);
+                s += " down and pass around, " + (bottles - bottlesTakenAtOnce);
+                if (bottles - bottlesTakenAtOnce == 1) s += " bottle of beer on the wall.\n";
                 else s += " bottles of beer on the wall.\n";
-                bottles -= bottleTakenAtOnce;
+                bottles -= bottlesTakenAtOnce;
             }
             if (bottles != 1) s += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
             else s += bottles + " bottle of beer on the wall, " + bottles + " bottle of beer.\n";
