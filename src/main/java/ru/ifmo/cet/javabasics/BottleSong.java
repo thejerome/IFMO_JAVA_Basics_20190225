@@ -50,21 +50,20 @@ public class BottleSong {
         } else SUNum = bottleTaken.get(bottlesTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
 
         if (bottlesTakenAtOnce < 100 && bottlesTakenAtOnce > 0) {
-            while (bottles > bottlesTakenAtOnce) {
+            while (bottles > bottleTakenAtOnce) {
                 BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
-                bottles -= bottlesTakenAtOnce;
                 BottleSongLyrics += "Take ";
-                if ((bottles - bottlesTakenAtOnce > 0)) {
+                if ((bottles - bottleTakenAtOnce > 0)) {
+                    bottles -= bottleTakenAtOnce;
                     BottleSongLyrics += SUNum + " down and pass around, " + bottles + " bottles of beer on the wall.\n";
-                } else {
-                    if (bottlesTakenAtOnce < 20) {
-                        SUNum = bottleTaken.get(bottles);
-                    } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
-                    BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
-                    BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
-                    BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
-                    BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
                 }
+                if (bottleTakenAtOnce < 20) {
+                    SUNum = bottleTaken.get(bottles);
+                } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
+                BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
+                BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
+                BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
             }
             return BottleSongLyrics;
         }
