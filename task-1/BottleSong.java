@@ -20,19 +20,20 @@ public class BottleSong
             throw new IllegalArgumentException();
 
         int bottlesLeft = 99;
-        StringBuilder TheSongBuilder = new StringBuilder();
+        String TheSong = "";
 
         while (bottlesLeft >= bottleTakenAtOnce)
-            TheSongBuilder.append(String.format("%s of beer on the wall, %s of beer.\nTake %s down and pass around, %s of beer on the wall.\n",
-                    sBottlesLeft(bottlesLeft), sBottlesLeft(bottlesLeft), sBottlesTake(bottleTakenAtOnce), sBottlesLeft(bottlesLeft -= bottleTakenAtOnce)));
+            TheSong += sBottlesLeft(bottlesLeft) + " of beer on the wall, " + sBottlesLeft(bottlesLeft) + " of beer.\nTake "
+                    + sBottlesTake(bottleTakenAtOnce) + " down and pass around, " + sBottlesLeft(bottlesLeft -= bottleTakenAtOnce)
+                    + " of beer on the wall.\n";
 
         if (bottlesLeft > 0)
-            TheSongBuilder.append(String.format("%s of beer on the wall, %s of beer.\nTake %s down and pass around, %s of beer on the wall.\n",
-                    sBottlesLeft(bottlesLeft), sBottlesLeft(bottlesLeft), sBottlesTake(bottlesLeft), sBottlesLeft(0)));
+            TheSong += sBottlesLeft(bottlesLeft) + " of beer on the wall, " + sBottlesLeft(bottlesLeft) + " of beer.\nTake "
+                    + sBottlesTake(bottlesLeft) + " down and pass around, " + sBottlesLeft(0) + " of beer on the wall.\n";
 
-        TheSongBuilder.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+        TheSong += "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
 
-        return TheSongBuilder.toString();
+        return TheSong;
     }
 
     private String sBottlesLeft( int amount ) { return ((amount > 0) ? (new Integer(amount)).toString() : "no more") + (amount == 1 ? " bottle" : " bottles"); }
