@@ -30,14 +30,63 @@ package ru.ifmo.cet.javabasics;
  * Значение передается в качестве параметра конструктора
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
-public class BottleSong {
+public class BottleSong
+    {
 
-    public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+    private static String[] tens = {"ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+
+    private static String[] Twenty = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+
+
+       private int Taken;
+
+    private String toWords(int num)
+       {
+        if (num <= 19)
+            return Twenty[num - 1];
+        else if (num % 10 == 0)
+            return tens[(num / 10) - 1];
+        else
+            return tens[(num / 10) - 1] + " " + Twenty[(num % 10) - 1];
+       }
+
+
+
+    public BottleSong(int bottleTakenAtOnce)
+       {
+        Taken = bottleTakenAtOnce;
+       }
+
+
+    public String getBottleSongLyrics()
+
+    {
+        if (Taken <= 0 || Taken > 99)
+           {
+            throw new IllegalArgumentException();
+           }
+
+
+        StringBuilder result = new StringBuilder();
+
+
+        int Count;
+        String TEMP = " bottles";
+
+        for (Count = 99; Count > Taken; Count -= Taken) {
+            if (Count - Taken == 1) {
+                TEMP = " bottle";
+            }
+            result.append(Count + " bottles of beer on the wall, " + Count + " bottles of beer.\n");
+            result.append("Take " + toWords(Taken) + " down and pass around, " + (Count - Taken) + TEMP + " of beer on the wall.\n");
+        }
+
+        result.append(Count + TEMP + " of beer on the wall, " + Count + TEMP + " of beer.\n");
+        result.append("Take " + toWords(Count) + " down and pass around, no more bottles of beer on the wall.\n");
+
+        result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+
+        return result.toString();
     }
 
-    public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
-    }
 }
