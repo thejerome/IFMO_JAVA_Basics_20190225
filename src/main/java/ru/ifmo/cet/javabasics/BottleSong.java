@@ -55,13 +55,11 @@ public class BottleSong {
                 bottles -= bottleTakenAtOnce;
                 BottleSongLyrics += "Take ";
                 if ((bottles - bottleTakenAtOnce > 0)) {
-                    BottleSongLyrics += SUNum " down and pass around, " + bottles + " bottles of beer on the wall.\n";
+                    BottleSongLyrics += SUNum + " down and pass around, " + bottles + " bottles of beer on the wall.\n";
                 } else {
                     if (bottleTakenAtOnce < 20) {
                         SUNum = bottleTaken.get(bottles);
                     } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
-                    SLNum = bottleTaken.get(bottles / 10 * 10);
-                    SRNum = bottleTaken.get(bottles % 10);
                     BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
                     BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
                     BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
