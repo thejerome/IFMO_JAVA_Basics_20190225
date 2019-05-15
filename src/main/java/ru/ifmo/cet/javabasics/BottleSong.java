@@ -102,7 +102,7 @@ public class BottleSong {
 	            String number = "";
 
 	            if (map.get(bottles) != null){number = map.get(bottles);}
-	             else {num = map.get(bottles - bottles%10) + " " + map.get(bottles%10);}
+	             else {number = map.get(bottles - bottles%10) + " " + map.get(bottles%10);}
 
 
 	            a += number + " down and pass around, no more bottles of beer on the wall.\n";
