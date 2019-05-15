@@ -2,7 +2,7 @@ package ru.ifmo.cet.javabasics;
 
 public class BottleSong
 {
-    private static final String[]
+    private String[]
             Nums = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
             "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen","sixteen", "seventeen", "eighteen", "nineteen",
             "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
@@ -34,7 +34,7 @@ public class BottleSong
 
         int bottlesLeft = 99;
         StringBuilder TheSongBuilder = new StringBuilder();
-
+		
         if (!TheSong.isEmpty())
             TheSong = "";
 
