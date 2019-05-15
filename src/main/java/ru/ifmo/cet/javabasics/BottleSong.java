@@ -32,15 +32,15 @@ package ru.ifmo.cet.javabasics;
  */
 public class BottleSong {
 
-    private int bottleTakenAtOnce;
-
     private String[] tens = {"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
     private String[] upToTwenty = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
 
+    private int Taken;
+
     public BottleSong(int bottleTakenAtOnce)
     {
-        this.bottleTakenAtOnce = bottleTakenAtOnce;
+        this.Taken = bottleTakenAtOnce;
     }
 
     private String inWord(int bottleTakenAtOnce)
@@ -55,21 +55,25 @@ public class BottleSong {
 
     public String getBottleSongLyrics()
     {
-        if (bottleTakenAtOnce <= 0 || bottleTakenAtOnce > 99) throw new IllegalArgumentException();
+        if (Taken <= 0 || Taken > 99)
+        {
+            throw new IllegalArgumentException();
+        }
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int i;
 
 
-        for (i = 99; i > bottleTakenAtOnce; i -= bottleTakenAtOnce) {
-            result = result.concat(i + " bottles of beer on the wall, " + i + " bottles of beer.\n" +
-                    "Take " + inWord(bottleTakenAtOnce) + " down and pass around, " + (i - bottleTakenAtOnce) + (i - bottleTakenAtOnce == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
+        for (i = 99; i > Taken; i -= Taken)
+        {
+            result.append(i + " bottles of beer on the wall, " + i + " bottles of beer.\n");
+            result.append("Take " + inWord(Taken) + " down and pass around, " + (i - Taken) + (i - Taken == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
         }
 
-        result = result.concat(i + (i == 1 ? " bottle" : " bottles") + " of beer on the wall, " + i + (i == 1 ? " bottle" : " bottles") + " of beer.\n" +
+        result.append(i + (i == 1 ? " bottle" : " bottles") + " of beer on the wall, " + i + (i == 1 ? " bottle" : " bottles") + " of beer.\n" +
                 "Take " + inWord(i) + " down and pass around, no more bottles of beer on the wall.\n" +
                 "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
-        return result;
+        return result.toString();
     }
 }
