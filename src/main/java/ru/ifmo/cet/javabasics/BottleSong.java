@@ -13,6 +13,7 @@ public class BottleSong {
         int bottles = 99;
         String SUNum = "";
         String BottleSongLyrics = "";
+        String BottlesBottle = "bottles";
 
         Map<Integer, String> bottleTaken = new HashMap<Integer, String>();
 
@@ -61,7 +62,8 @@ public class BottleSong {
             if (bottlesTakenAtOnce < 20) {
                 SUNum = bottleTaken.get(bottles);
             } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
-            BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+            if (bottles == 1) BottlesBottle = "bottle";
+            BottleSongLyrics += bottles + " " + BottlesBottle + " of beer on the wall, " + bottles + " bottles of beer.\n";
             BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
             BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
             BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
