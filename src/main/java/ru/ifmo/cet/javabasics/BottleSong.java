@@ -45,19 +45,19 @@ public class BottleSong {
         bottleTaken.put(80, "eighty");
         bottleTaken.put(90, "ninety");
 
-        if (bottleTakenAtOnce < 20) {
-            SUNum = bottleTaken.get(bottleTakenAtOnce);
-        } else SUNum = bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottleTakenAtOnce % 10);
+        if (bottlesTakenAtOnce < 20) {
+            SUNum = bottlesTaken.get(bottlesTakenAtOnce);
+        } else SUNum = bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
 
-        if (bottleTakenAtOnce < 100 && bottleTakenAtOnce > 0) {
-            while (bottles > bottleTakenAtOnce) {
+        if (bottlesTakenAtOnce < 100 && bottlesTakenAtOnce > 0) {
+            while (bottles > bottlesTakenAtOnce) {
                 BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
-                bottles -= bottleTakenAtOnce;
+                bottles -= bottlesTakenAtOnce;
                 BottleSongLyrics += "Take ";
-                if ((bottles - bottleTakenAtOnce > 0)) {
+                if ((bottles - bottlesTakenAtOnce > 0)) {
                     BottleSongLyrics += SUNum + " down and pass around, " + bottles + " bottles of beer on the wall.\n";
                 } else {
-                    if (bottleTakenAtOnce < 20) {
+                    if (bottlesTakenAtOnce < 20) {
                         SUNum = bottleTaken.get(bottles);
                     } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
                     BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
