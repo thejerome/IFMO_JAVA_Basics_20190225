@@ -22,10 +22,12 @@ public class BottleSong
         int bottlesLeft = 99;
         String TheSong = "";
 
-        while (bottlesLeft >= bottleTakenAtOnce)
+        while (bottlesLeft >= bottleTakenAtOnce) {
             TheSong += sBottlesLeft(bottlesLeft) + " of beer on the wall, " + sBottlesLeft(bottlesLeft) + " of beer.\nTake "
-                    + sBottlesTake(bottleTakenAtOnce) + " down and pass around, " + sBottlesLeft(bottlesLeft -= bottleTakenAtOnce)
-                    + " of beer on the wall.\n";
+                    + sBottlesTake(bottleTakenAtOnce) + " down and pass around, ";
+            bottlesLeft -= bottleTakenAtOnce;
+            TheSong += sBottlesLeft(bottlesLeft) + " of beer on the wall.\n";
+        }
 
         if (bottlesLeft > 0)
             TheSong += sBottlesLeft(bottlesLeft) + " of beer on the wall, " + sBottlesLeft(bottlesLeft) + " of beer.\nTake "
@@ -38,7 +40,7 @@ public class BottleSong
 
     private String sBottlesLeft( int amount ) { return ((amount > 0) ? (new Integer(amount)).toString() : "no more") + (amount == 1 ? " bottle" : " bottles"); }
 
-    private String sBottlesTake( int amount ) { return (amount < 20) ? (sSafeNumsObtain(amount)) : (sSafeNumsObtain(amount / 10 + 18) + ((amount % 10 != 0) ? (" " + sSafeNumsObtain(amount % 10)) : "")); }
+    private String sBottlesTake( int amount ) { return (amount < 20) ? sSafeNumsObtain(amount) : (sSafeNumsObtain(amount / 10 + 18) + ((amount % 10 != 0) ? (" " + sSafeNumsObtain(amount % 10)) : "")); }
 
-    private String sSafeNumsObtain( int index ) { return (index > 0 && index < Nums.length) ? Nums[index] : ""; }
+    private String sSafeNumsObtain( int index ) { return (index >= 0 && index < Nums.length) ? Nums[index] : ""; }
 }
