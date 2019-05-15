@@ -45,7 +45,7 @@ public class BottleSong {
         bottleTaken.put(90, "ninety");
 
         if (bottleTakenAtOnce < 100 && bottleTakenAtOnce > 0) {
-            while (bottles > bottlesTakenAtOnce) {
+            while (bottles > bottleTakenAtOnce) {
                 BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
                 BottleSongLyrics += "Take ";
                 if ((bottles - bottleTakenAtOnce > 0)) {
