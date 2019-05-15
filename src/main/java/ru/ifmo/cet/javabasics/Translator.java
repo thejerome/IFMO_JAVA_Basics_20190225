@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.math.BigDecimal;
 
 
-public class Translator {
+class Translator {
 
 
     private BigDecimal amount;
 
 
-    public Translator(long l) {
+    Translator(long l) {
         String s = String.valueOf(l);
         if (!s.contains("."))
             s += ".0";
@@ -19,22 +19,7 @@ public class Translator {
     }
 
 
-    public Translator(double l) {
-        String s = String.valueOf(l);
-        if (!s.contains("."))
-            s += ".0";
-        this.amount = new BigDecimal(s);
-    }
-
-
-    public Translator(String s) {
-        if (!s.contains("."))
-            s += ".0";
-        this.amount = new BigDecimal(s);
-    }
-
-
-    public static String morph(long n, String f1, String f2, String f5) {
+    private static String morph(long n, String f1, String f2, String f5) {
         n = Math.abs(n) % 100;
         long n1 = n % 10;
         if (n > 10 && n < 20) return f5;
@@ -44,17 +29,7 @@ public class Translator {
     }
 
 
-    public String asString() {
-        return amount.toString();
-    }
-
-
-    public String num2str() {
-        return num2str(false);
-    }
-
-
-    public String num2str(boolean stripkop) {
+    String num2str(boolean stripkop) {
         String[][] sex = {
                 {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"},
                 {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"},
@@ -84,7 +59,7 @@ public class Translator {
             kops = "0" + kops;
         long rub_tmp = rub;
 
-        ArrayList segments = new ArrayList();
+        ArrayList<Long> segments = new ArrayList<>();
         while (rub_tmp > 999) {
             long seg = rub_tmp / 1000;
             segments.add(rub_tmp - (seg * 1000));
@@ -93,19 +68,19 @@ public class Translator {
         segments.add(rub_tmp);
         Collections.reverse(segments);
 
-        String o = "";
+        StringBuilder o = new StringBuilder();
         if (rub == 0) {
-            o = "ноль " + morph(0, forms[1][0], forms[1][1], forms[1][2]);
+            o = new StringBuilder("ноль " + morph(0, forms[1][0], forms[1][1], forms[1][2]));
             if (stripkop)
-                return o;
+                return o.toString();
             else
                 return o + " " + kop + " " + morph(kop, forms[0][0], forms[0][1], forms[0][2]);
         }
         // Больше нуля
         int lev = segments.size();
-        for (int i = 0; i < segments.size(); i++) {
-            int sexi = (int) Integer.valueOf(forms[lev][3].toString());
-            int ri = (int) Integer.valueOf(segments.get(i).toString());
+        for (Long segment : segments) {
+            int sexi = Integer.valueOf(forms[lev][3]);
+            int ri = Integer.valueOf(segment.toString());
             if (ri == 0 && lev > 1) {
                 lev--;
                 continue;
@@ -114,30 +89,30 @@ public class Translator {
             if (rs.length() == 1) rs = "00" + rs;
             if (rs.length() == 2) rs = "0" + rs;
 
-            int r1 = (int) Integer.valueOf(rs.substring(0, 1));
-            int r2 = (int) Integer.valueOf(rs.substring(1, 2));
-            int r3 = (int) Integer.valueOf(rs.substring(2, 3));
-            int r22 = (int) Integer.valueOf(rs.substring(1, 3));
+            int r1 = Integer.valueOf(rs.substring(0, 1));
+            int r2 = Integer.valueOf(rs.substring(1, 2));
+            int r3 = Integer.valueOf(rs.substring(2, 3));
+            int r22 = Integer.valueOf(rs.substring(1, 3));
 
-            if (ri > 99) o += str100[r1] + " ";
+            if (ri > 99) o.append(str100[r1]).append(" ");
             if (r22 > 20) {// >20
-                o += str10[r2] + " ";
-                o += sex[sexi][r3] + " ";
+                o.append(str10[r2]).append(" ");
+                o.append(sex[sexi][r3]).append(" ");
             } else { // <=20
-                if (r22 > 9) o += str11[r22 - 9] + " ";
-                else o += sex[sexi][r3] + " ";
+                if (r22 > 9) o.append(str11[r22 - 9]).append(" ");
+                else o.append(sex[sexi][r3]).append(" ");
             }
 
-            o += morph(ri, forms[lev][0], forms[lev][1], forms[lev][2]) + " ";
+            o.append(morph(ri, forms[lev][0], forms[lev][1], forms[lev][2])).append(" ");
             lev--;
         }
 
         if (stripkop) {
-            o = o.replaceAll(" {2,}", " ");
+            o = new StringBuilder(o.toString().replaceAll(" {2,}", " "));
         } else {
-            o = o + "" + kops + " " + morph(kop, forms[0][0], forms[0][1], forms[0][2]);
-            o = o.replaceAll(" {2,}", " ");
+            o.append(kops).append(" ").append(morph(kop, forms[0][0], forms[0][1], forms[0][2]));
+            o = new StringBuilder(o.toString().replaceAll(" {2,}", " "));
         }
-        return o;
+        return o.toString();
     }
 }
