@@ -35,10 +35,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BottleSong {
-	int bottleTakenAtOnce;
+
 
     public BottleSong(int bottleTakenAtOnce) {
         this.bottleTakenAtOnce = bottleTakenAtOnce;
+        
     }
 
     public String getBottleSongLyrics() {
