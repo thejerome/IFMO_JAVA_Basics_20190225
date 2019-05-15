@@ -5,7 +5,7 @@ enum NumberToWord {
     eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen,
     twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety;
 
-    private static String convertWithoutSpaces(int number) {
+    private static String convertWithSpace(int number) {
         if (number == 0) {
             return "";
         }
@@ -13,12 +13,12 @@ enum NumberToWord {
             return NumberToWord.values()[number].toString();
         }
         else {
-            return NumberToWord.values()[number / 10 + 18].toString() + " " + convertWithoutSpaces(number % 10);
+            return NumberToWord.values()[number / 10 + 18].toString() + " " + convertWithSpace(number % 10);
         }
     }
 
     static String convert(int number) {
-        String numberInWords = convertWithoutSpaces(number);
+        String numberInWords = convertWithSpace(number);
         int spacePosition = numberInWords.lastIndexOf(" ");
         if (spacePosition == numberInWords.length()-1) {
             numberInWords = numberInWords.substring(0, numberInWords.length()-1);
