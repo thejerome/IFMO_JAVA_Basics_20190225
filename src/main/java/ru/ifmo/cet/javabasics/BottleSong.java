@@ -31,13 +31,82 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
+    class BottleSong
+    {
+        private static final String[] tens = {
+                "",
+                "ten",
+                "twenty",
+                "thirty",
+                "forty",
+                "fifty",
+                "sixty",
+                "seventy",
+                "eighty",
+                "ninety"
+        };
 
-    public BottleSong(int bottleTakenAtOnce) {
-        //TODO
-    }
+        private static final String[] normal = {
+                "",
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine",
+                "ten",
+                "eleven",
+                "twelve",
+                "thirteen",
+                "fourteen",
+                "fifteen",
+                "sixteen",
+                "seventeen",
+                "eighteen",
+                "nineteen"
+        };
+        private final int taken;
 
-    public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        private String toWords(int num) {
+            if (num <= 19)
+                return normal[num];
+            else if (num % 10 == 0)
+                return tens[num / 10];
+            else
+                return tens[num / 10] + " " + normal[num % 10];
+        }
+
+        public BottleSong(int bottleTakenAtOnce) {
+            //TODO
+            taken = bottleTakenAtOnce;
+        }
+
+        public String getBottleSongLyrics() {
+            //TODO
+            throw new UnsupportedOperationException();
+            if (taken <= 0 || taken > 99) {
+                throw new IllegalArgumentException();
+            }
+
+
+            StringBuilder result = new StringBuilder();
+            int bottleCounter;
+
+
+            for (bottleCounter = 99; bottleCounter > taken; bottleCounter -= taken) {
+                result.append(bottleCounter + " bottles of beer on the wall, " + bottleCounter + " bottles of beer.\n");
+                result.append("Take " + toWords(taken) + " down and pass around, " + (bottleCounter - taken) + (bottleCounter - taken == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
+            }
+
+            result.append(bottleCounter + (bottleCounter == 1 ? " bottle" : " bottles") + " of beer on the wall, " + bottleCounter + (bottleCounter == 1 ? " bottle" : " bottles") + " of beer.\n");
+            result.append("Take " + toWords(bottleCounter) + " down and pass around, no more bottles of beer on the wall.\n");
+
+            result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+
+            return result.toString();
+        }
     }
 }
