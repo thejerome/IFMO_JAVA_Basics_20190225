@@ -78,16 +78,16 @@ public class BottleSong {
 	        if (bottleTakenAtOnce <= 99 && bottleTakenAtOnce >= 1) {
 	            while (bottles - bottleTakenAtOnce > 0) {
 	                a += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\nTake ";
-	                String num = "";
+	                String number = "";
 	                if (map.get(bottleTakenAtOnce) != null){
-	                    num = map.get(bottleTakenAtOnce);
+	                    number = map.get(bottleTakenAtOnce);
 	                } else {
-	                    num = map.get(bottleTakenAtOnce - bottleTakenAtOnce%10) + " " + map.get(bottleTakenAtOnce%10);
+	                    number = map.get(bottleTakenAtOnce - bottleTakenAtOnce%10) + " " + map.get(bottleTakenAtOnce%10);
 	                }
 	                if (bottles - bottleTakenAtOnce != 1)
-	                    a += num + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottles of beer on the wall.\n";
+	                    a += number + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottles of beer on the wall.\n";
 	                else
-	                    a += num + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottle of beer on the wall.\n";
+	                    a += number + " down and pass around, " + (bottles - bottleTakenAtOnce) + " bottle of beer on the wall.\n";
 	                bottles -= bottleTakenAtOnce;
 	            }
 	
@@ -101,11 +101,11 @@ public class BottleSong {
 	
 	            String number = "";
 
-	            if (map.get(bottles) != null){num = map.get(bottles);}
+	            if (map.get(bottles) != null){number = map.get(bottles);}
 	             else {num = map.get(bottles - bottles%10) + " " + map.get(bottles%10);}
 
 
-	            a += num + " down and pass around, no more bottles of beer on the wall.\n";
+	            a += number + " down and pass around, no more bottles of beer on the wall.\n";
 	            a += "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
 	            return a;
 	        } else throw new IllegalArgumentException();
