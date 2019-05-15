@@ -33,7 +33,7 @@ package ru.ifmo.cet.javabasics;
  */
 class BottleSong
 {
-    private static final String[] tensNames = {
+    private static final String[] tensWords = {
             "",
             "ten",
             "twenty",
@@ -45,7 +45,8 @@ class BottleSong
             "eighty",
             "ninety"
     };
-    private static final String[] numNames = {
+
+    private static final String[] numWords = {
             "",
             "one",
             "two",
@@ -67,44 +68,41 @@ class BottleSong
             "eighteen",
             "nineteen"
     };
-    private final int bottleTakenAtOnce;
+    private final int taken;
 
-    public BottleSong(int bottleTakenAtOnce)
-    {
-        this.bottleTakenAtOnce = bottleTakenAtOnce;
+    private String toWords(int num) {
+        if (num <= 19)
+            return numWords[num];
+        else if (num % 10 == 0)
+            return tensWords[num / 10];
+        else
+            return tensWords[num / 10] + " " + numWords[num % 10];
     }
 
-    public String getBottleSongLyrics()
-    {
-        if (bottleTakenAtOnce <= 0 || bottleTakenAtOnce > 99) {
+    public BottleSong(int bottleTakenAtOnce) {
+        taken = bottleTakenAtOnce;
+    }
+
+    public String getBottleSongLyrics() {
+        if (taken <= 0 || taken > 99) {
             throw new IllegalArgumentException();
         }
+
 
         StringBuilder result = new StringBuilder();
         int bottleCounter;
 
 
-        for (bottleCounter = 99; bottleCounter > bottleTakenAtOnce; bottleCounter -= bottleTakenAtOnce) {
+        for (bottleCounter = 99; bottleCounter > taken; bottleCounter -= taken) {
             result.append(bottleCounter + " bottles of beer on the wall, " + bottleCounter + " bottles of beer.\n");
-            result.append("Take " + getWordNumber(bottleTakenAtOnce) + " down and pass around, " + (bottleCounter - bottleTakenAtOnce) + (bottleCounter - bottleTakenAtOnce == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
+            result.append("Take " + toWords(taken) + " down and pass around, " + (bottleCounter - taken) + (bottleCounter - taken == 1 ? " bottle" : " bottles") + " of beer on the wall.\n");
         }
 
         result.append(bottleCounter + (bottleCounter == 1 ? " bottle" : " bottles") + " of beer on the wall, " + bottleCounter + (bottleCounter == 1 ? " bottle" : " bottles") + " of beer.\n");
-        result.append("Take " + getWordNumber(bottleCounter) + " down and pass around, no more bottles of beer on the wall.\n");
+        result.append("Take " + toWords(bottleCounter) + " down and pass around, no more bottles of beer on the wall.\n");
 
         result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
         return result.toString();
     }
-
-    private static String getWordNumber(int toStringNumber)
-    {
-        if (toStringNumber <= 19)
-            return numNames[toStringNumber];
-        else if (toStringNumber % 10 == 0)
-            return tensNames[toStringNumber / 10];
-        else
-            return tensNames[toStringNumber / 10] + " " + numNames[toStringNumber % 10];
-    }
-
 }
