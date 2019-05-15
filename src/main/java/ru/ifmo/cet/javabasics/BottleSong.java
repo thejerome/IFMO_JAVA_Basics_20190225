@@ -31,7 +31,6 @@ package ru.ifmo.cet.javabasics;
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
 public class BottleSong {
-    class BottleSong
     {
         private static final String[] tens = {
                 "",
