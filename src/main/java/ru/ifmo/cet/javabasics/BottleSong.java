@@ -30,14 +30,69 @@ package ru.ifmo.cet.javabasics;
  * Значение передается в качестве параметра конструктора
  * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
  */
-public class BottleSong {
 
+import java.util.HashMap;
+import java.util.Map;
+
+public class BottleSong {
+    private int bottlesTakenAtOnce;
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        this.bottlesTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        Map<Integer, String> m = new HashMap<Integer, String>();
+        m.put(0, "no more");
+        m.put(1, "one");
+        m.put(2, "two");
+        m.put(3, "three");
+        m.put(4, "four");
+        m.put(5, "five");
+        m.put(6, "six");
+        m.put(7, "seven");
+        m.put(8, "eight");
+        m.put(9, "nine");
+        m.put(10, "ten");
+        m.put(11, "eleven");
+        m.put(12, "twelve");
+        m.put(13, "thirteen");
+        m.put(14, "fourteen");
+        m.put(15, "fifteen");
+        m.put(16, "sixteen");
+        m.put(17, "seventeen");
+        m.put(18, "eighteen");
+        m.put(19, "nineteen");
+        m.put(20, "twenty");
+        m.put(30, "thirty");
+        m.put(40, "forty");
+        m.put(50, "fifty");
+        m.put(60, "sixty");
+        m.put(70, "seventy");
+        m.put(80, "eighty");
+        m.put(90, "ninety");
+
+        String s = "";
+        int bottles = 99;
+        if (bottlesTakenAtOnce > 0 && bottlesTakenAtOnce < 100) {
+            while (bottles > bottlesTakenAtOnce) {
+                s += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                s += "Take ";
+                if (m.get(bottlesTakenAtOnce) != null) s += m.get(bottlesTakenAtOnce);
+                else s += m.get(bottlesTakenAtOnce/10*10) + ' ' + m.get(bottlesTakenAtOnce%10);
+                s += " down and pass around, " + (bottles - bottlesTakenAtOnce);
+                if (bottles - bottlesTakenAtOnce == 1) s += " bottle of beer on the wall.\n";
+                else s += " bottles of beer on the wall.\n";
+                bottles -= bottlesTakenAtOnce;
+            }
+            if (bottles != 1) s += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+            else s += bottles + " bottle of beer on the wall, " + bottles + " bottle of beer.\n";
+            s += "Take ";
+            if (m.get(bottles) != null) s += m.get(bottles);
+            else s += m.get(bottles/10*10) + ' ' + m.get(bottles%10);
+            s += " down and pass around, no more bottles of beer on the wall.\n" +
+                 "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n";
+            return s;
+        }
+        else throw new IllegalArgumentException();
     }
 }
