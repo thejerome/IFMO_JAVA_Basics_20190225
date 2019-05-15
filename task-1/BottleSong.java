@@ -11,15 +11,15 @@ public class BottleSong
 
     public BottleSong( int bottleTakenAtOnce )
     {
-        if (bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99)
-            throw new IllegalArgumentException();
-
         makeSong(bottleTakenAtOnce);
     }
 
     public String getBottleSongLyrics() { return (TheSong == null ) ? "" : TheSong; }
 
     private void makeSong( int bottleTakenAtOnce ) {
+        if (bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99)
+            throw new IllegalArgumentException();
+
         int bottlesLeft = 99;
         StringBuilder TheSongBuilder = new StringBuilder();
 
