@@ -46,8 +46,8 @@ public class BottleSong {
         bottleTaken.put(90, "ninety");
 
         if (bottlesTakenAtOnce < 20) {
-            SUNum = bottlesTaken.get(bottlesTakenAtOnce);
-        } else SUNum = bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
+            SUNum = bottleTaken.get(bottlesTakenAtOnce);
+        } else SUNum = bottleTaken.get(bottlesTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
 
         if (bottlesTakenAtOnce < 100 && bottlesTakenAtOnce > 0) {
             while (bottles > bottlesTakenAtOnce) {
