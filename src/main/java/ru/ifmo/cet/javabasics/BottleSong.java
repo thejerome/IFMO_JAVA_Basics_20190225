@@ -1,6 +1,5 @@
 package ru.ifmo.cet.javabasics;
 
-import com.google.common.collect.Streams;
 
 /**
  * Нужно реализовать констурктор и метод, возвращающий слова песни про бутылки на стене.
