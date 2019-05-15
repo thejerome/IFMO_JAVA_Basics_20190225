@@ -1,43 +1,50 @@
 package ru.ifmo.cet.javabasics;
 
-/**
- * Нужно реализовать констурктор и метод, возвращающий слова песни про бутылки на стене.
- * <p>
- * Слова следующие:
- * <p>
- * 99 bottles of beer on the wall, 99 bottles of beer
- * Take one down, pass it around, 98 bottles of beer
- * 98 bottles of beer on the wall, 98 bottles of beer
- * Take one down, pass it around, 97 bottles of beer
- * 97 bottles of beer on the wall, 97 bottles of beer
- * Take one down, pass it around, 96 bottles of beer
- * 96 bottles of beer on the wall, 96 bottles of beer
- * Take one down, pass it around, 95 bottles of beer
- * 95 bottles of beer on the wall, 95 bottles of beer
- * ...
- * <p>
- * 3 bottles of beer on the wall, 3 bottles of beer
- * Take one down, pass it around, 2 bottles of beer
- * 2 bottles of beer on the wall, 2 bottles of beer
- * Take one down, pass it around, 1 bottles of beer
- * 1 bottle of beer on the wall, 1 bottle of beer
- * Take one down, pass it around, no more bottles of beer on the wall
- * No more bottles of beer on the wall, no more bottles of beer
- * Go to the store and buy some more, 99 bottles of beer on the wall
- * <p>
- * Дело усложняется тем, что текст песни переменный:
- * За раз может быть взято несколько бутылок.
- * Значение передается в качестве параметра конструктора
- * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
- */
 public class BottleSong {
 
+    private int bottleTakenAtOnce;
+    private int currentBottles = 99;
+
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        this.bottleTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        if (bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            StringBuilder song = new StringBuilder();
+            while (currentBottles > bottleTakenAtOnce) {
+                song.append(currentBottles)
+                    .append(" bottles of beer on the wall, ")
+                    .append(currentBottles)
+                    .append(" bottles of beer.\n");
+                song.append("Take ")
+                    .append(NumberToWord.convert(bottleTakenAtOnce))
+                    .append(" down and pass around, ")
+                    .append(currentBottles -= bottleTakenAtOnce)
+                    .append(" bottles of beer on the wall.\n");
+            }
+            if (currentBottles == 1) {
+                song.deleteCharAt(song.lastIndexOf("s"));
+                song.append(currentBottles)
+                    .append(" bottle of beer on the wall, ")
+                    .append(currentBottles)
+                    .append(" bottle of beer.\n");
+            }
+            else {
+                song.append(currentBottles)
+                    .append(" bottles of beer on the wall, ")
+                    .append(currentBottles)
+                    .append(" bottles of beer.\n");
+            }
+            song.append("Take ")
+                .append(NumberToWord.convert(currentBottles))
+                .append(" down and pass around, no more bottles of beer on the wall.\n")
+                .append("No more bottles of beer on the wall, no more bottles of beer.\n")
+                .append("Go to the store and buy some more, 99 bottles of beer on the wall.\n");
+            return song.toString();
+        }
     }
 }
