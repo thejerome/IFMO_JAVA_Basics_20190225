@@ -46,7 +46,7 @@ public class BottleSong {
                 "ninety"
         };
 
-        private static final String[] normal = {
+        private static final String[] norm = {
                 "",
                 "one",
                 "two",
@@ -72,21 +72,18 @@ public class BottleSong {
 
         private String toWords(int num) {
             if (num <= 19)
-                return normal[num];
+                return norm[num];
             else if (num % 10 == 0)
                 return tens[num / 10];
             else
-                return tens[num / 10] + " " + normal[num % 10];
+                return tens[num / 10] + " " + norm[num % 10];
         }
 
         public BottleSong(int bottleTakenAtOnce) {
-            //TODO
             taken = bottleTakenAtOnce;
         }
 
         public String getBottleSongLyrics() {
-            //TODO
-            throw new UnsupportedOperationException();
             if (taken <= 0 || taken > 99) {
                 throw new IllegalArgumentException();
             }
@@ -109,4 +106,4 @@ public class BottleSong {
             return result.toString();
         }
     }
-}
+} 
