@@ -11,6 +11,7 @@ public class BottleSong {
 
     public String getBottleSongLyrics() {
         int bottles = 99;
+        String SUNum = "";
         String BottleSongLyrics = "";
 
         Map<Integer, String> bottleTaken = new HashMap<Integer, String>();
@@ -44,16 +45,25 @@ public class BottleSong {
         bottleTaken.put(80, "eighty");
         bottleTaken.put(90, "ninety");
 
+        if (bottleTakenAtOnce < 20) {
+            SUNum = bottleTaken.get(bottleTakenAtOnce);
+        } else SUNum = bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottleTakenAtOnce % 10);
+
         if (bottleTakenAtOnce < 100 && bottleTakenAtOnce > 0) {
             while (bottles > bottleTakenAtOnce) {
                 BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
                 bottles -= bottleTakenAtOnce;
                 BottleSongLyrics += "Take ";
                 if ((bottles - bottleTakenAtOnce > 0)) {
-                    BottleSongLyrics += bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottleTakenAtOnce % 10) + " down and pass around, " + bottles + " bottles of beer on the wall.\n";
+                    BottleSongLyrics += SUNum " down and pass around, " + bottles + " bottles of beer on the wall.\n";
                 } else {
+                    if (bottleTakenAtOnce < 20) {
+                        SUNum = bottleTaken.get(bottles);
+                    } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
+                    SLNum = bottleTaken.get(bottles / 10 * 10);
+                    SRNum = bottleTaken.get(bottles % 10);
                     BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
-                    BottleSongLyrics += "Take " + bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10) + " down and pass around, no more bottles of beer on the wall.\n";
+                    BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
                     BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
                     BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
                 }
