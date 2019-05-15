@@ -75,6 +75,7 @@ class BottleSong
 
     public String getBottleSongLyrics()
     {
+        String a = ff.values()[0].name();
         if(bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99 )
         {
             throw new IllegalArgumentException();
@@ -85,13 +86,24 @@ class BottleSong
 
         for (counter = 99; counter > bottleTakenAtOnce; counter -= bottleTakenAtOnce)
         {
-            builder.append(String.format("%d bottles of beer on the wall, %d bottles of beer.\n" +
-                            "Take%s down and pass around, %d%s of beer on the wall.\n",
-                    counter, counter, getWordNumber(bottleTakenAtOnce), counter - bottleTakenAtOnce, counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles"));
+            builder.append(counter)
+                    .append(" bottles of beer on the wall, ")
+                    .append(counter)
+                    .append(" bottles of beer.\nTake")
+                    .append(getWordNumber(bottleTakenAtOnce))
+                    .append(" down and pass around, ")
+                    .append(counter - bottleTakenAtOnce)
+                    .append(counter - bottleTakenAtOnce == 1 ? " bottle" : " bottles")
+                    .append(" of beer on the wall.\n");
         }
-        builder.append(String.format("%d%s of beer on the wall, %d%s of beer.\n" +
-                "Take%s down and pass around, no more bottles of beer on the wall.\n" +
-                "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n", counter, counter == 1 ? " bottle" : " bottles", counter, counter == 1 ? " bottle" : " bottles", getWordNumber(counter)));
+        builder.append(counter)
+                .append(counter == 1 ? " bottle" : " bottles")
+                .append(" of beer on the wall, ")
+                .append(counter)
+                .append(counter == 1 ? " bottle" : " bottles")
+                .append(" of beer.\nTake")
+                .append(getWordNumber(counter))
+                .append(" down and pass around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
         return builder.toString();
     }
@@ -99,8 +111,6 @@ class BottleSong
     private static String getWordNumber(int toStringNumber)
     {
         String soFar;
-
-        if(toStringNumber == 0) return "zero";
 
         if (toStringNumber % 100 < 20){
             soFar = numNames[toStringNumber % 100];
@@ -117,4 +127,9 @@ class BottleSong
         return numNames[toStringNumber] + " hundred" + soFar;
     }
 
+}
+enum ff
+{
+    one,
+    two
 }
