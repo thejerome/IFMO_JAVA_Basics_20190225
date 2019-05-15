@@ -60,7 +60,7 @@ public class BottleSong {
                     BottleSongLyrics += SUNum + " down and pass around, " + bottles + " " + BottlesBottle + " of beer on the wall.\n";
                 }
             }
-            if (bottlesTakenAtOnce < 20) {
+            if (bottles < 20) {
                 SUNum = bottleTaken.get(bottles);
             } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
             BottleSongLyrics += bottles + " " + BottlesBottle + " of beer on the wall, " + bottles + " " + BottlesBottle + " of beer.\n";
