@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class BottleSong {
 
-
+	private final int bottleTakenAtOnce;
     public BottleSong(int bottleTakenAtOnce) {
         this.bottleTakenAtOnce = bottleTakenAtOnce;
         
