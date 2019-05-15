@@ -38,9 +38,36 @@ public class BottleSong
         return TheSong;
     }
 
-    private String sBottlesLeft( int amount ) { return ((amount > 0) ? (new Integer(amount)).toString() : "no more") + (amount == 1 ? " bottle" : " bottles"); }
+    private String sBottlesLeft( int amount ) {
+        String res = "";
+        if (amount > 0)
+            res += (new Integer(amount)).toString();
+        else
+            res += "no more";
 
-    private String sBottlesTake( int amount ) { return (amount < 20) ? sSafeNumsObtain(amount) : (sSafeNumsObtain(amount / 10 + 18) + ((amount % 10 != 0) ? (" " + sSafeNumsObtain(amount % 10)) : "")); }
+        res += " bottle";
 
-    private String sSafeNumsObtain( int index ) { return (index >= 0 && index < Nums.length) ? Nums[index] : ""; }
+        if (amount != 1)
+            res += "s";
+
+        return res;
+    }
+
+    private String sBottlesTake( int amount )
+    {
+        if (amount < 20)
+            return sSafeNumsObtain(amount);
+
+        String res = sSafeNumsObtain(amount / 10 + 18);
+        if (amount % 10 != 0)
+            res += " " + sSafeNumsObtain(amount % 10);
+
+         return res;
+    }
+
+    private String sSafeNumsObtain( int index ) {
+        if (index >= 0 && index < Nums.length)
+            return Nums[index];
+        return "";
+    }
 }
