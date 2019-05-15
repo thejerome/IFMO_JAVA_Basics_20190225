@@ -47,12 +47,13 @@ public class BottleSong {
         if (bottleTakenAtOnce < 100 && bottleTakenAtOnce > 0) {
             while (bottles > bottleTakenAtOnce) {
                 BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                bottles -= bottleTakenAtOnce;
                 BottleSongLyrics += "Take ";
                 if ((bottles - bottleTakenAtOnce > 0)) {
                     BottleSongLyrics += bottleTaken.get(bottleTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottleTakenAtOnce % 10) + " down and pass around, " + bottles + " bottles of beer on the wall.\n";
                 } else {
                     BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
-                    BottleSongLyrics += "Take " + bottleTaken.get(bottles / 10 * 10) + bottleTaken.get(bottles % 10) + " down and pass around, no more bottles of beer on the wall.\n";
+                    BottleSongLyrics += "Take " + bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10) + " down and pass around, no more bottles of beer on the wall.\n";
                     BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
                     BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
                 }
