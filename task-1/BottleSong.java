@@ -23,7 +23,7 @@ public class BottleSong
         if (bottleTakenAtOnce != bottleTakenAtOncePrev)
             makeSong(bottleTakenAtOnce);
         
-        return (TheSong == null) ? "" : TheSong;
+        return TheSong;
     }
 
     private void makeSong( int bottleTakenAtOnce ) {
@@ -34,9 +34,8 @@ public class BottleSong
 
         int bottlesLeft = 99;
         StringBuilder TheSongBuilder = new StringBuilder();
-		
-        if (!TheSong.isEmpty())
-            TheSong = "";
+        
+        TheSong = "";
 
         while (bottlesLeft >= bottleTakenAtOnce)
             TheSongBuilder.append(String.format("%s of beer on the wall, %s of beer.\nTake %s down and pass around, %s of beer on the wall.\n",
