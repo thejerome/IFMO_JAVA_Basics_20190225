@@ -92,7 +92,7 @@ public class BottleSong {
 
     private String intToString(int x) {
         if (x >= 10 && x <= 19)
-            return tenToNineteen[ones];
+            return tenToNineteen[x % 10];
 
         if (x % 10 == 0)
             return twentyToNinety[x / 10];
