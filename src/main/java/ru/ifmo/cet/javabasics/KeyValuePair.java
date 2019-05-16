@@ -10,11 +10,11 @@ class KeyValuePair implements Comparable<KeyValuePair>{
         this.value = value;
     }
 
-    int getValue() {
+    public int getValue() {
         return value;
     }
 
-    String getKey() {
+    public String getKey() {
         return key;
     }
 
