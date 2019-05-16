@@ -32,12 +32,50 @@ package ru.ifmo.cet.javabasics;
  */
 public class BottleSong {
 
-    public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+    private static String[] Tens = { "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+
+    private static String[] Units = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+
+    private int Remove;
+
+    private String IntToWord(int value) {
+        if (value <= 19)
+            return Units[value - 1];
+        else if (value % 10 == 0)
+            return Tens[value / 10 - 1];
+        else
+            return Tens[value / 10 - 1] + " " + Units[value % 10 - 1];
+    }
+
+    public BottleSong(int Taken) {
+        Remove = Taken;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+
+
+        if (Remove <= 0 || Remove > 99) {
+            throw new IllegalArgumentException();
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        int Count;
+        String temp = " bottles";
+
+        for (Count = 99; Count > Remove; Count -= Remove) {
+            if (Count - Remove == 1) {
+                temp = " bottle";
+            }
+            result.append(Count + " bottles of beer on the wall, " + Count + " bottles of beer.\n");
+            result.append("Take " + IntToWord(Remove) + " down and pass around, " + (Count - Remove) + temp + " of beer on the wall.\n");
+        }
+
+        result.append(Count + temp + " of beer on the wall, " + Count + temp + " of beer.\n");
+        result.append("Take " + IntToWord(Count) + " down and pass around, no more bottles of beer on the wall.\n");
+
+        result.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+
+        return result.toString();
     }
 }
