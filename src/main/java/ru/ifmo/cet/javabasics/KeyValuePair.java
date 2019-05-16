@@ -19,12 +19,10 @@ class KeyValuePair implements Comparable<KeyValuePair>{
     }
 
     public int compareTo(KeyValuePair other) {
-        if(value != other.value)
-        {
+        if(value != other.value) {
             return other.value - value;
         }
-        else
-        {
+        else {
             return key.compareTo(other.key);
         }
     }

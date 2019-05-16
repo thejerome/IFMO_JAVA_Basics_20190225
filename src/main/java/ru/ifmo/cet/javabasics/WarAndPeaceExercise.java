@@ -1,16 +1,27 @@
 package ru.ifmo.cet.javabasics;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.util.*;
 
-
 public class WarAndPeaceExercise {
 
-    private static String readFileAsString(Path path) throws IOException {
-        return new String(Files.readAllBytes(path));
+    private static String[] readFileAsStrings(Path path) throws IOException {
+        List<String> fileSet = Files.readAllLines(path, Charset.forName("windows-1251"));
+        return Arrays.toString(fileSet.toArray())
+                .toLowerCase()
+                .split("([^А-я\\w]|[\\s\\d])+");
+    }
+
+    private static void putWordsToMap(Map<String, Integer> map, String[] array) {
+        for (String word : array) {
+            if (word.length() >= 4) {
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+        }
     }
 
     public static String warAndPeace() {
@@ -18,27 +29,23 @@ public class WarAndPeaceExercise {
         final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
 
         try {
-            String fullText = readFileAsString(tome12Path) + readFileAsString(tome34Path);
-            String[] wordsArray = fullText.toLowerCase().split("(?U)[\\W\\d]");
+            String[] tome12String = readFileAsStrings(tome12Path);
+            String[] tome34String = readFileAsStrings(tome34Path);
 
             Map<String, Integer> wordsMap = new HashMap<>();
 
-            for (String word : wordsArray) {
-                if (word.length() >= 4) {
-                    wordsMap.put(word, wordsMap.getOrDefault(word, 0) + 1);
-                }
+            putWordsToMap(wordsMap, tome12String);
+            putWordsToMap(wordsMap, tome34String);
+
+            SortedSet<KeyValuePair> sortedMapSet = new TreeSet<>();
+
+            for(Map.Entry<String, Integer> item : wordsMap.entrySet())
+            {
+                sortedMapSet.add(new KeyValuePair(item.getValue(),item.getKey()));
             }
 
             StringBuilder result = new StringBuilder();
-            List<Map.Entry<String, Integer>> list = new ArrayList<>(wordsMap.entrySet());
-            SortedSet<KeyValuePair> sortedSet = new TreeSet<>();
-
-            for(Map.Entry<String, Integer> item : list)
-            {
-                sortedSet.add(new KeyValuePair(item.getValue(),item.getKey()));
-            }
-
-            for (KeyValuePair p : sortedSet) {
+            for (KeyValuePair p : sortedMapSet) {
                 if (p.getValue() >= 10) {
                     result.append(p.getKey()).append(" - ").append(p.getValue()).append("\n");
                 }
