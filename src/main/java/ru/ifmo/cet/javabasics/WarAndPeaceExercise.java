@@ -33,7 +33,7 @@ public class WarAndPeaceExercise {
         Set words = map.keySet();
         //System.out.println(map.entrySet());
 
-        temp = start.install_and_sort(words, temp, map);
+        temp = start.installAndSort(words, temp, map);
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < temp.size(); i++) {

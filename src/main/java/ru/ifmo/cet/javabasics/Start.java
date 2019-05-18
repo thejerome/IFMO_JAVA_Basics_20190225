@@ -43,7 +43,7 @@ public class Start {
         return map;
     }
 
-    public ArrayList<MyClass> install_and_sort(Set words, ArrayList<MyClass> temp, HashMap<String, Integer> map) {
+    public ArrayList<MyClass> installAndSort(Set words, ArrayList<MyClass> temp, HashMap<String, Integer> map) {
         int k = 0;
         for (Object word : words) {
             if (map.get(word) >= 10) {
