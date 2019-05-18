@@ -1,21 +1,49 @@
 package ru.ifmo.cet.javabasics;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.*;
+
+
 
 
 public class WarAndPeaceExercise {
 
-    public static String warAndPeace() {
+    public static String warAndPeace() throws IOException {
         final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
         final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
 
-        // TODO map lowercased words to its amount in text and concatenate its entries.
-        // TODO If word "котик" occurred in text 23 times then its entry would be "котик - 23\n".
-        // TODO Entries in final String should be also sorted by amount and then in alphabetical order if needed.
-        // TODO Also omit any word with lengths less than 4 and frequency less than 10
+        List<String> lines12 = Files.readAllLines(tome12Path.toAbsolutePath(), Charset.forName("windows-1251"));
+        List<String> lines34 = Files.readAllLines(tome34Path.toAbsolutePath(), Charset.forName("windows-1251"));
+        ArrayList<String> allLines = new ArrayList<>();
+        allLines.addAll(lines12);
+        allLines.addAll(lines34);
 
-        throw new UnsupportedOperationException();
+        Start start = new Start();
+
+        HashMap<String, Integer> map = new HashMap<>();
+
+        map = start.installMap(allLines, map);
+
+        ArrayList<MyClass> temp = new ArrayList<>();
+
+        Set words = map.keySet();
+        //System.out.println(map.entrySet());
+
+        temp = start.installAndSort(words, temp, map);
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < temp.size(); i++) {
+            result.append(temp.get(i).getWord());
+            result.append(" - ");
+            result.append(temp.get(i).getFrequence());
+            if (i != temp.size() - 1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
     }
-
 }
