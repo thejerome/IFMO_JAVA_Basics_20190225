@@ -1,12 +1,13 @@
 package ru.ifmo.cet.javabasics;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Set;
 
 import static java.util.Collections.swap;
 
-public class start {
-    public HashMap<String, Integer> Count(ArrayList<String> allLines, HashMap<String, Integer> map){
+public class Start {
+    public HashMap<String, Integer> installMap(ArrayList<String> allLines, HashMap<String, Integer> map) {
         for (String line : allLines) {
             line = line.toLowerCase().replaceAll("\\p{Punct}", " ");
             line = line.toLowerCase().replaceAll("\\u2026", " ");
@@ -42,7 +43,7 @@ public class start {
         return map;
     }
 
-    public ArrayList<MyClass> Install_and_Sort(Set words, ArrayList<MyClass> temp, HashMap<String, Integer> map){
+    public ArrayList<MyClass> install_and_sort(Set words, ArrayList<MyClass> temp, HashMap<String, Integer> map) {
         int k = 0;
         for (Object word : words) {
             if (map.get(word) >= 10) {

@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static java.util.Collections.swap;
+
 
 
 public class WarAndPeaceExercise {
@@ -22,18 +22,18 @@ public class WarAndPeaceExercise {
         allLines.addAll(lines12);
         allLines.addAll(lines34);
 
-        start Start = new start();
+        Start start = new Start();
 
         HashMap<String, Integer> map = new HashMap<>();
 
-        map = Start.Count(allLines, map);
+        map = start.installMap(allLines, map);
 
         ArrayList<MyClass> temp = new ArrayList<>();
 
         Set words = map.keySet();
         //System.out.println(map.entrySet());
 
-        temp = Start.Install_and_Sort(words, temp, map);
+        temp = start.install_and_sort(words, temp, map);
 
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < temp.size(); i++) {
