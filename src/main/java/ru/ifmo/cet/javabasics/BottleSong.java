@@ -118,7 +118,6 @@ public class BottleSong {
     }
 
     public String getBottleSongLyrics() {
-        throw new UnsupportedOperationException();
         if (bottleTakenAtOnce < 1 || bottleTakenAtOnce > 99) {
             throw new IllegalArgumentException();
         }
