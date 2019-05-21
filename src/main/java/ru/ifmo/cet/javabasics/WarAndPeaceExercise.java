@@ -4,7 +4,6 @@ import com.google.common.base.Charsets;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,10 +11,6 @@ import java.util.*;
 
 
 public class WarAndPeaceExercise {
-
-    private static void calcwords(List<String> listtome, HashMap<String, Integer> calcWord){
-
-    }
 
     public static String warAndPeace() throws IOException{
         final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
@@ -26,8 +21,8 @@ public class WarAndPeaceExercise {
         // TODO If word "котик" occurred in text 23 times then its entry would be "котик - 23\n".
         // TODO Entries in final String should be also sorted by amount and then in alphabetical order if needed.
         // TODO Also omit any word with lengths less than 4 and frequency less than 10
-        List<String> listtome12 = Files.readAllLines(tome12Path, Charset.forName("windows-1252"));
-        List<String> listtome34 = Files.readAllLines(tome34Path, Charset.forName("windows-1252"));
+        List<String> listtome12 = Files.readAllLines(tome12Path, Charset.forName("windows-1251"));
+        List<String> listtome34 = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
         listtome12.addAll(listtome34);
 
         HashMap<String, Integer> calcWord = new HashMap<>();
@@ -43,6 +38,12 @@ public class WarAndPeaceExercise {
                         Integer frequence = calcWord.get(word);
                         calcWord.put(word, (frequence == null) ? 1 : frequence + 1);
                     }
+                }else{
+                    String word = i.substring(left + 1);
+                    if (word.length() >= 4) {
+                        Integer frequence = calcWord.get(word);
+                        calcWord.put(word, (frequence == null) ? 1 : frequence + 1);
+                    }
                 }
                 left = right;
             }
@@ -50,11 +51,12 @@ public class WarAndPeaceExercise {
 
         ArrayList<String> beforeans = new ArrayList<>();
         for(Map.Entry<String, Integer> item : calcWord.entrySet()){
-            if (item.getValue() > 10) {
+            if (item.getValue() >= 10) {
                 beforeans.add(item.getKey() + " " + item.getValue());
             }
         }
         //Collections.sort(beforeans, new Sortbyvalue() );
+        Collections.sort(beforeans);
         beforeans.sort(new Comparator<String>() {
             @Override
             public int compare(String a, String b) {
@@ -69,7 +71,7 @@ public class WarAndPeaceExercise {
             ans.append(beforeans.get(i).substring(0, space));
             ans.append(" - ");
             ans.append(beforeans.get(i).substring(space + 1, beforeans.get(i).length()));
-            ans.append('\n');
+            if(i != beforeans.size() - 1) ans.append('\n');
         }
         return ans.toString();
     }
