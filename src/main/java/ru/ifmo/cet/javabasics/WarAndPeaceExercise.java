@@ -84,19 +84,19 @@ public class WarAndPeaceExercise
         }
         );
 
-        StringBuilder ans = new StringBuilder("");
+        StringBuilder otv = new StringBuilder("");
 
         for (int m =0; m <beforeans.size(); m++)
         {
             int prs = beforeans.get(m).indexOf(' ');
 
-            ans.append(beforeans.get(m).substring(0, prs));
-            ans.append(" - ");
-            ans.append(beforeans.get(m).substring(prs+1, beforeans.get(m).length()));
-            if(m != beforeans.size()-1) ans.append('\n');
+            otv.append(beforeans.get(m).substring(0, prs));
+            otv.append(" - ");
+            otv.append(beforeans.get(m).substring(prs+1, beforeans.get(m).length()));
+            if(m != beforeans.size()-1) otv.append('\n');
         }
 
-        return ans.toString();
+        return otv.toString();
     }
 
 }
