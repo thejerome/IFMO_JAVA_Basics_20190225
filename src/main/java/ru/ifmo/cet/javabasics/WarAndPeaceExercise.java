@@ -1,7 +1,5 @@
 package ru.ifmo.cet.javabasics;
 
-import com.google.common.base.Charsets;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -29,7 +27,8 @@ public class WarAndPeaceExercise {
 
         for(String i : listtome12){
             i = i.toLowerCase().replaceAll("[^а-яa-z]", " ");
-            int right = 0, left = -1;
+            int right = 0;
+            int left = -1;
             while (right != -1){
                 right = i.indexOf(' ', left + 1);
                 if (right != -1){
