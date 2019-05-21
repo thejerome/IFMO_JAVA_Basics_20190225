@@ -74,10 +74,10 @@ public class WarAndPeaceExercise
         beforeans.sort(new Comparator<String>()
         {
             @Override
-            public int compare(String a, String b)
+            public int compare(String one, String two)
             {
-                int j = Integer.parseInt(b.substring(b.indexOf(' ')+1));
-                int i = Integer.parseInt(a.substring(a.indexOf(' ')+1));
+                int j = Integer.parseInt(two.substring(two.indexOf(' ')+1));
+                int i = Integer.parseInt(one.substring(one.indexOf(' ')+1));
 
                 return j - i;
             }
