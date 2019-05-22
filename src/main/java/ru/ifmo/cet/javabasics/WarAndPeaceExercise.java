@@ -12,23 +12,18 @@ import java.util.regex.Pattern;
 
 public class WarAndPeaceExercise {
 
-    public static String warAndPeace() {
+    public static String warAndPeace() throws IOException{
         final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
         final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
         StringBuilder sb = new StringBuilder();
         StringBuilder ans = new StringBuilder();
         Map<String, Integer> words = new TreeMap<>();
-        {
-            try {
+        {            
                 List<String> bigLine1 = Files.readAllLines(tome12Path.toAbsolutePath(), Charset.forName("windows-1251"));
                 List<String> bigLine2 = Files.readAllLines(tome34Path.toAbsolutePath(), Charset.forName("windows-1251"));
                 sb.append(bigLine1);
                 sb.append(bigLine2);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         } // работа с файлом, бесполезная ловля ошибок и т.д.
-
         {
             Pattern onlyWords = Pattern.compile("[^a-zA-Zа-яА-Я]");
             Matcher cleaner = onlyWords.matcher(sb);
@@ -54,7 +49,6 @@ public class WarAndPeaceExercise {
                 }
             }
         } // послевоенная сортировка и соединение в одну строку
-
         return ans.substring(1);
     }
 
