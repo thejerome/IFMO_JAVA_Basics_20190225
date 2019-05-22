@@ -27,7 +27,7 @@ mp.put(word, 1);
 }
 }
 }
-List<Map.Entry<String, Integer» list = new ArrayList<>(mp.entrySet());
+List<Map.Entry<String, Integer>> list = new ArrayList<>(mp.entrySet());
 SortedSet<KeyValuePair> sortedSet = new TreeSet<KeyValuePair>();
 for(Map.Entry<String, Integer> item : list)
 sortedSet.add(new KeyValuePair(item.getValue(),item.getKey()));
