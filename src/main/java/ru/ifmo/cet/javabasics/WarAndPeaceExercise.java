@@ -1,18 +1,11 @@
 package ru.ifmo.cet.javabasics;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Scanner;
 import java.io.*;
 import java.util.*;
-import java.util.Map.Entry;
 import java.nio.file.*;
 import java.nio.charset.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class WarAndPeaceExercise {
@@ -110,8 +103,7 @@ public class WarAndPeaceExercise {
 
     }
     public static String correctLine(String line){
-        line = line.toLowerCase().replaceAll("[^а-яa-z]", " ");
-        return line;
+        return  line.toLowerCase().replaceAll("[^а-яa-z]", " ");
     }
 
 
