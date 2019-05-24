@@ -1,21 +1,50 @@
 package ru.ifmo.cet.javabasics;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+import java.nio.file.Files;
+import java.util.*;
 
 public class WarAndPeaceExercise {
-
+    private static String[] readFileAsStrings(Path path) throws IOException {
+        List<String> fileSet = Files.readAllLines(path, Charset.forName("windows-1251"));
+        return Arrays.toString(fileSet.toArray())
+                .toLowerCase()
+                .split("([^А-я\\w]|[\\s\\d])+");
+    }
+    private static void mapWords(Map<String, Integer> map, String[] array) {
+        for (String word : array) {
+            if (word.length() >= 4) {
+                map.put(word, map.getOrDefault(word, 0) + 1);
+            }
+        }
+    }
     public static String warAndPeace() {
         final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
         final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
-
-        // TODO map lowercased words to its amount in text and concatenate its entries.
-        // TODO If word "котик" occurred in text 23 times then its entry would be "котик - 23\n".
-        // TODO Entries in final String should be also sorted by amount and then in alphabetical order if needed.
-        // TODO Also omit any word with lengths less than 4 and frequency less than 10
-
-        throw new UnsupportedOperationException();
+        try {
+            String[] tome12String = readFileAsStrings(tome12Path);
+            String[] tome34String = readFileAsStrings(tome34Path);
+            Map<String, Integer> wordsMap = new HashMap<>();
+            mapWords(wordsMap, tome12String);
+            mapWords(wordsMap, tome34String);
+            SortedSet<KeyValuePair> sortedMapSet = new TreeSet<>();
+            for(Map.Entry<String, Integer> item : wordsMap.entrySet())
+            {
+                sortedMapSet.add(new KeyValuePair(item.getValue(),item.getKey()));
+            }
+            StringBuilder result = new StringBuilder();
+            for (KeyValuePair p : sortedMapSet) {
+                if (p.getValue() >= 10) {
+                    result.append(p.getKey()).append(" - ").append(p.getValue()).append("\n");
+                }
+            }
+            return result.deleteCharAt(result.length()-1).toString();
+        }
+        catch (IOException e) {
+            return e.getMessage();
+        }
     }
-
 }
