@@ -10,13 +10,9 @@ import java.util.*;
 
 public class WarAndPeaceExercise {
 
-    private static String textSplitted = "";
     private static String text;
-    private static int i;
-    private static int count;
     private static Map<String, Integer> alphabetMap;
     private static String res;
-    private static String[] arrText;
     private static String result;
 
 
@@ -27,10 +23,8 @@ public class WarAndPeaceExercise {
         List<String> secondFile = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
         firstFile.addAll(secondFile);
         text = "";
-        count = 0;
         alphabetMap = new TreeMap<>();
         res = "";
-        textSplitted = "";
 
 
         for (String s : firstFile) {

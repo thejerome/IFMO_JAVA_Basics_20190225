@@ -54,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/ifmo/cet/javabasics/WarAndPeaceExercise.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
+            <state relative-caret-position="375">
+              <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -171,8 +171,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,9 +251,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="IFMO_JAVA_Basics_20190225_[test] - 2019.05.24 at 01h 10m 47s.xml">
-      <configuration name="IFMO_JAVA_Basics_20190225 [test]" configurationId="GradleRunConfiguration" />
-    </history-entry>
     <history-entry file="IFMO_JAVA_Basics_20190225_[test] - 2019.05.24 at 01h 11m 33s.xml">
       <configuration name="IFMO_JAVA_Basics_20190225 [test]" configurationId="GradleRunConfiguration" />
     </history-entry>
@@ -281,12 +278,14 @@
     <history-entry file="IFMO_JAVA_Basics_20190225_[test] - 2019.05.25 at 23h 07m 08s.xml">
       <configuration name="IFMO_JAVA_Basics_20190225 [test]" configurationId="GradleRunConfiguration" />
     </history-entry>
+    <history-entry file="IFMO_JAVA_Basics_20190225_[test] - 2019.05.25 at 23h 16m 19s.xml">
+      <configuration name="IFMO_JAVA_Basics_20190225 [test]" configurationId="GradleRunConfiguration" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -295,7 +294,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28674698" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28674698" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -327,8 +326,15 @@
     <entry file="file://$PROJECT_DIR$/IFMO_JAVA_Basics_20190225.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/WAPResult.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/ifmo/cet/javabasics/WarAndPeaceExercise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ru/ifmo/cet/javabasics/WarAndPeaceExerciseTest.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -337,15 +343,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/ifmo/cet/javabasics/WarAndPeaceExercise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/WAPResult.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
