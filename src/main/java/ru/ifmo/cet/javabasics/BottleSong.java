@@ -40,20 +40,29 @@ public class BottleSong {
     }
 
     public String getBottleSongLyrics() {
-        return Generate(99) + "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.";
+        if (delta > 99 || delta <= 0){
+            throw new IllegalArgumentException();
+        }
+
+        Generate(99);
+
+        resultSong.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
+
+        return resultSong.toString();
     }
 
     StringBuilder tempBuilder = new StringBuilder();
-    private String Generate(int temp){
+    private void Generate(int temp){
         tempBuilder.setLength(0);
-        tempBuilder.append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer on the wall, ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer.\nTake ");
+        tempBuilder.append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer on the wall, ").append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer.\nTake ");
 
         temp -= delta;
 
         if (temp > 0){
             tempBuilder.append(NumberToWord(delta)).append(" down and pass around, ").append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer on the wall.\n");
             resultSong.append(tempBuilder);
-            return Generate(temp);
+            Generate(temp);
+            return;
         }
 
         if (temp == 0){
@@ -65,13 +74,11 @@ public class BottleSong {
         tempBuilder.append(" down and pass around, no more bottles of beer on the wall.\n");
 
         resultSong.append(tempBuilder);
-
-        return resultSong.toString();
     }
 
     private static final String[] zeroToNine = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    private static final String[] elevenToNineteen = {"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
-    private static final String[] tenToNinety = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+    private static final String[] tenToNineteen = {"ten", "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+    private static final String[] twentyToNinety = {"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
 
     private String PluralCheck(String baseValue, String pluralValue, int ammount){
         if (ammount > 1){
@@ -91,16 +98,16 @@ public class BottleSong {
         }
 
         if (number < 20){
-            return elevenToNineteen[number-1];
+            return tenToNineteen[number-10];
         }
 
         int decimalPart = (number / 10);
         int anotherPart = number % 10;
 
         if (anotherPart == 0){
-            return tenToNinety[decimalPart-1];
+            return twentyToNinety[decimalPart-2];
         }
 
-        return tenToNinety[decimalPart-1] + " " + zeroToNine[anotherPart-1];
+        return twentyToNinety[decimalPart-2] + " " + zeroToNine[anotherPart-1];
     }
 }
