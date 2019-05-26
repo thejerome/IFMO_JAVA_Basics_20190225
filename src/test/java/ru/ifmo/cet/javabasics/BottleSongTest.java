@@ -1,4 +1,4 @@
-package ru.ifmo.cet.javabasics;
+    package ru.ifmo.cet.javabasics;
 
 import org.junit.jupiter.api.Test;
 
