@@ -30,8 +30,8 @@ public class WarAndPeaceExercise {
                 .filter(entry -> entry.getValue() >= 10)
                 .sorted(Comparator.<Map.Entry<String, Long>, Long>comparing(entry -> entry.getValue()).reversed().thenComparing(entry -> entry.getKey()))
                 .forEach((a) -> result.append(a.getKey() + " - " + a.getValue() + '\n'));
-        {//Это тихий ужас, торжественно клянусь то никогда не буду писать лямбда выражения. Уровень нечитаемости похлеще чем в конспектах по математике
-        }//Complain
+        //Это тихий ужас, торжественно клянусь то никогда не буду писать лямбда выражения. Уровень нечитаемости похлеще чем в конспектах по математике
+        //Complain
         return result.substring(0,result.length()-1).toString();
     }
 }
