@@ -13,8 +13,8 @@ public class WarAndPeaceExercise {
         Comparator<K> valueComparator = new Comparator<K>() {
             public int compare(K k1, K k2) {
                 int compare = tmap.get(k1).compareTo(tmap.get(k2));
-                if (compare == 0) return 1;
-                else return -compare;
+                compare = (compare == 0) ? 1 : -compare;
+                return compare;
             }
         };
 
@@ -33,9 +33,9 @@ public class WarAndPeaceExercise {
         List<String> all_lines_path34 = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
         all_lines_path.addAll(all_lines_path34);
 
-        all_lines_path.forEach((s) -> {
+        all_lines_path.forEach(s -> {
             List<String> words = Arrays.asList(s.split("[^A-Za-zА-Яа-я]+"));
-            words.forEach((word) -> {
+            words.forEach(word -> {
                 word = word.toLowerCase();
                 Integer memory_4_bit = (word.length() > 3 && tm.containsKey(word)) ? tm.put(word, tm.get(word)+1) : tm.put(word, 1);
             });
@@ -45,10 +45,6 @@ public class WarAndPeaceExercise {
             StringBuilder trash = new StringBuilder("TRASH");
             StringBuilder another_n_bit = ((Integer)v > 9) ? result.append(k.toString() + " - " + v.toString() +'\n') : trash;
         });
-        // TODO map lowercased words to its amount in text and concatenate its entries.
-        // TODO If word "котик" occurred in text 23 times then its entry would be "котик - 23\n".
-        // TODO Entries in final String should be also sorted by amount and then in alphabetical order if needed.
-        // TODO Also omit any word with lengths less than 4 and frequency less than 10
         return result.substring(0,result.length()-1);
     }
 
