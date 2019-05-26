@@ -32,8 +32,13 @@ package ru.ifmo.cet.javabasics;
  */
 public class BottleSong {
 
+    private static final String[] zeroToNine = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static final String[] tenToNineteen = {"ten", "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+    private static final String[] twentyToNinety = {"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+
     private int delta;
     private StringBuilder resultSong = new StringBuilder();
+    private StringBuilder tempBuilder = new StringBuilder();
 
     public BottleSong(int bottleTakenAtOnce) {
         delta = bottleTakenAtOnce;
@@ -44,31 +49,32 @@ public class BottleSong {
             throw new IllegalArgumentException();
         }
 
-        Generate(99);
+        generate(99);
 
         resultSong.append("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
         return resultSong.toString();
     }
 
-    StringBuilder tempBuilder = new StringBuilder();
-    private void Generate(int temp){
+    private void generate(int startValue){
+        int temp = startValue;
+
         tempBuilder.setLength(0);
-        tempBuilder.append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer on the wall, ").append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer.\nTake ");
+        tempBuilder.append(temp).append(" ").append(pluralCheck("bottle", "bottles", temp)).append(" of beer on the wall, ").append(temp).append(" ").append(pluralCheck("bottle", "bottles", temp)).append(" of beer.\nTake ");
 
         temp -= delta;
 
         if (temp > 0){
-            tempBuilder.append(NumberToWord(delta)).append(" down and pass around, ").append(temp).append(" ").append(PluralCheck("bottle", "bottles", temp)).append(" of beer on the wall.\n");
+            tempBuilder.append(numberToWord(delta)).append(" down and pass around, ").append(temp).append(" ").append(pluralCheck("bottle", "bottles", temp)).append(" of beer on the wall.\n");
             resultSong.append(tempBuilder);
-            Generate(temp);
+            generate(temp);
             return;
         }
 
         if (temp == 0){
-            tempBuilder.append(NumberToWord(delta));
+            tempBuilder.append(numberToWord(delta));
         }else{
-            tempBuilder.append(NumberToWord(temp+delta));
+            tempBuilder.append(numberToWord(temp+delta));
         }
 
         tempBuilder.append(" down and pass around, no more bottles of beer on the wall.\n");
@@ -76,11 +82,7 @@ public class BottleSong {
         resultSong.append(tempBuilder);
     }
 
-    private static final String[] zeroToNine = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    private static final String[] tenToNineteen = {"ten", "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
-    private static final String[] twentyToNinety = {"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
-
-    private String PluralCheck(String baseValue, String pluralValue, int ammount){
+    private String pluralCheck(String baseValue, String pluralValue, int ammount){
         if (ammount > 1){
             return pluralValue;
         }
@@ -88,7 +90,7 @@ public class BottleSong {
         return baseValue;
     }
 
-    private String NumberToWord(int number){
+    private String numberToWord(int number){
         if (number <= 0){
             return "";
         }
