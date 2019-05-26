@@ -32,18 +32,19 @@ public class WarAndPeaceExercise {
         List<String> all_lines_path = Files.readAllLines(tome12Path, Charset.forName("windows-1251"));
         List<String> all_lines_path34 = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
         all_lines_path.addAll(all_lines_path34);
-
+        Integer[] memories_4_bit = new Integer[1];
         all_lines_path.forEach(s -> {
             List<String> words = Arrays.asList(s.split("[^A-Za-zА-Яа-я]+"));
             words.forEach(word -> {
                 word = word.toLowerCase();
-                Integer memory_4_bit = (word.length() > 3 && tm.containsKey(word)) ? tm.put(word, tm.get(word)+1) : tm.put(word, 1);
+                memories_4_bit[0] = (word.length() > 3 && tm.containsKey(word)) ? tm.put(word, tm.get(word)+1) : tm.put(word, 1);
             });
         });
+        StringBuilder[] another_n_bit = new StringBuilder[1];
         TreeMap sortedMap = sortByValues(tm);
         sortedMap.forEach((k,v) -> {
             StringBuilder trash = new StringBuilder("TRASH");
-            StringBuilder another_n_bit = ((Integer)v > 9) ? result.append(k.toString() + " - " + v.toString() +'\n') : trash;
+            another_n_bit[0] = ((Integer)v > 9) ? result.append(k.toString() + " - " + v.toString() +'\n') : trash;
         });
         return result.substring(0,result.length()-1);
     }
