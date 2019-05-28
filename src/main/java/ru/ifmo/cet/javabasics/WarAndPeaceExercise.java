@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class WarAndPeaceExercise {
@@ -25,18 +26,18 @@ public class WarAndPeaceExercise {
         List<String> listtome12 = Files.readAllLines(tome12Path, Charset.forName("windows-1251"));
         List<String> listtome34 = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
         listtome12.addAll(listtome34);
-        String ans = Arrays.stream(listtome12.toArray())
+        Stream<String> words = Arrays.stream(listtome12.toArray())
                 .flatMap(s -> Arrays.stream(s.toString().toLowerCase().replaceAll("[^а-яa-z]", " ").split(" ")))
                 .filter(s -> s.length() >= 4)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
                 .filter(s -> s.getValue() >= 10)
-                .map(s -> s.getKey()+ " - " + s.getValue().toString())
-                .sorted()
-                .sorted((s1, s2) -> Integer.parseInt(s2.substring(s2.lastIndexOf(" ") + 1)) - Integer.parseInt(s1.substring(s1.lastIndexOf(" ") + 1)))
-                .reduce("", (s1, s2) -> s1 + "\n" + s2);
-        return ans.substring(1);
+                .sorted(Comparator.<Map.Entry<String, Long>, Long>comparing(entry -> entry.getValue()).reversed().thenComparing(entry -> entry.getKey()))
+                .map(s -> s.getKey() + " - " + s.getValue());
+        StringBuilder ans = new StringBuilder();
+        words.forEach((s) -> ans.append(s).append("\n"));//.reduce("", (s1, s2) -> s1 + "\n" + s2);
+        return ans.substring(0, ans.length() - 1);
     }
 
 }
