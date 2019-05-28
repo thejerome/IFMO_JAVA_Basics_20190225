@@ -1,38 +1,37 @@
 package ru.ifmo.cet.javabasics;
 
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class WarAndPeaceExercise {
+        public static String warAndPeace() throws IOException{
+            final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
+            final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
+            //final Path testPath = Paths.get("src", "main", "resources", "test.txt");
 
-    public static String warAndPeace() throws IOException {
-        final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
-        final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
-        //final Path testPath = Paths.get("src", "main", "resources", "test.txt");
+            List<String> listtome12 = Files.readAllLines(tome12Path, Charset.forName("windows-1251"));
+            List<String> listtome34 = Files.readAllLines(tome34Path, Charset.forName("windows-1251"));
+            listtome12.addAll(listtome34);
+            String ans = Arrays.stream(listtome12.toArray())
+                    .flatMap(s -> Arrays.stream(s.toString().toLowerCase().replaceAll("[^а-яa-z]", " ").split(" ")))
+                    .filter(s -> s.length() >= 4)
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet()
+                    .stream()
+                    .filter(s -> s.getValue() >= 10)
+                    .map(s -> s.getKey()+ " - " + s.getValue().toString())
+                    .sorted()
+                    .sorted((s1, s2) -> Integer.parseInt(s2.substring(s2.lastIndexOf(" ") + 1)) - Integer.parseInt(s1.substring(s1.lastIndexOf(" ") + 1)))
+                    .reduce("", (s1, s2) -> s1 + "\n" + s2);
+            return ans.substring(1);
+        }
 
-
-        StringBuilder ans = new StringBuilder();
-        Stream<String> words = Stream.concat(Files.lines(tome12Path, Charset.forName("windows-1251")), Files.lines(tome34Path, Charset.forName("windows-1251")));
-        words.map(s -> s.toLowerCase())
-                .flatMap(s -> Arrays.stream(s.split("[^а-яa-z]")))
-                .filter(s -> s.length() >= 4)
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                .entrySet()
-                .stream()
-                .filter(s -> s.getValue() >= 10)
-                .sorted(Comparator.<Map.Entry<String, Long>, Long>comparing(entry -> entry.getValue()).reversed().thenComparing(entry -> entry.getKey()))
-                .forEach((s) -> ans.append(s.getKey()).append(" - ").append(s.getValue()).append("\n"));
-        return ans.substring(0, ans.length() - 1);
     }
-
-}
