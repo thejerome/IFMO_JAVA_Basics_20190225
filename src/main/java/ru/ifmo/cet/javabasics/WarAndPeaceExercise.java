@@ -36,10 +36,10 @@ public class WarAndPeaceExercise {
 
         Map<String, Integer> data = new HashMap<>();
 
-        for (var tempLine : parseBase) {
+        for (String tempLine : parseBase) {
             String temp = tempLine.toLowerCase().replaceAll("[^а-яa-z]", " ");
 
-            for (var tempWord : temp.split(" ")) {
+            for (String tempWord : temp.split(" ")) {
                 if (tempWord.length() > 3) {
                     if (!data.containsKey(tempWord)) {
                         data.put(tempWord, 0);
