@@ -20,22 +20,16 @@ public class WarAndPeaceExercise {
     }
 
     private static boolean filterCheck(String filter, Integer value, Integer target){
-        if (filter.contains("=")){
-            if (value.equals(target)){
-                return true;
-            }
+        if (filter.contains("=") && value.equals(target)){
+            return true;
         }
 
-        if (filter.contains(">")){
-            if (value > target){
-                return true;
-            }
+        if (filter.contains(">" && value > target)){
+            return true;
         }
 
-        if (filter.contains("<")){
-            if (value < target){
-                return true;
-            }
+        if (filter.contains("<") && value < target){
+            return  true;
         }
 
         return false;
