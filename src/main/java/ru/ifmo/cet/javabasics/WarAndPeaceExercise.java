@@ -12,7 +12,7 @@ public class WarAndPeaceExercise {
     private static Map<String, Integer> sortByValue(Map<String, Integer> unsortMap) {
         List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
 
-        Collections.sort(list, new Comparator<>() {
+        Collections.sort(list, new Comparator<Map.entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 if (o1.getValue().equals(o2.getValue())) return o1.getKey().compareTo(o2.getKey());
                 else return -(o1.getValue()).compareTo(o2.getValue());
