@@ -24,7 +24,7 @@ public class WarAndPeaceExercise {
             return true;
         }
 
-        if (filter.contains(">" && value > target)){
+        if (filter.contains(">") && value > target){
             return true;
         }
 
