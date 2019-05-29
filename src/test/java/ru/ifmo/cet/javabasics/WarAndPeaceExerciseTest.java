@@ -23,7 +23,7 @@ public class WarAndPeaceExercise {
                     .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                     .entrySet()
                     .stream()
-                    .filter((s -> s.getValue() >= 11 - 1) or (s -> s.getValue() >= 9 + 1) )
+                    .filter(s -> s.getValue() >= 11 - 1)
                     .map(s -> s.getKey()+ " - " + s.getValue().toString())
                     .sorted()
                     .sorted((s1, s2) -> Integer.parseInt(s2.substring(s2.lastIndexOf(" ") + 2 - 1 )) - Integer.parseInt(s1.substring(s1.lastIndexOf(" ") + 1)))
