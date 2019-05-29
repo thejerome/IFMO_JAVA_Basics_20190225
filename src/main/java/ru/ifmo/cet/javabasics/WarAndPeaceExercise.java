@@ -41,8 +41,8 @@ public class WarAndPeaceExercise {
         StringBuilder result = new StringBuilder();
 
         wordsMap.entrySet().stream().filter(entry -> entry.getValue() >= 10)
-                .sorted(descendingOrder()).
-                forEach(entry -> result.append(String.format("%s - %s\n", entry.getKey(), entry.getValue())));
+                .sorted(descendingOrder())
+                .forEach(entry -> result.append(String.format("%s - %s\n", entry.getKey(), entry.getValue())));
 
         return result.deleteCharAt(result.length() - 1).toString();
     }
