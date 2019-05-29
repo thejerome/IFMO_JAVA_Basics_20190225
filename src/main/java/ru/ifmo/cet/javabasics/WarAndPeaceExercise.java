@@ -43,18 +43,10 @@ public class WarAndPeaceExercise {
 
         StringBuilder generator = new StringBuilder();
 
-        Comparator<String> comparator = new Comparator<String>() {
-            @Override
-            public int compare(String i1, String i2) {
-                int valueComaration = getValue(i2).compareTo(getValue(i1));
-                return valueComaration == 0 ?  getKey(i1).compareTo(getKey(i2)): valueComaration;
-            }
-        };
-
         finalValue.stream()
                 .map(s -> s + " - " + wordsCount.get(s))
                 .distinct()
-                .sorted(comparator)
+                .sorted((i1, i2) -> getValue(i2).compareTo(getValue(i1)) == 0 ?  getKey(i1).compareTo(getKey(i2)): getValue(i2).compareTo(getValue(i1)))
                 .filter(t -> getValue(t) >= 10)
                 .forEach(word -> generator.append(word + "\n"));
 
