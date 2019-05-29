@@ -11,16 +11,16 @@ import java.util.*;
 public class WarAndPeaceExercise {
     public static <K, V extends Comparable<V>> TreeMap<K, V> sortByValues(final TreeMap<K, V> tmap) {
         Comparator<K> valueComparator = new Comparator<K>() {
-            public int dif(K k1, K k2) {
-                int dif = tmap.get(k1).compareTo(tmap.get(k2));
-                dif = (dif == 0) ? 1 : -dif;
-                return dif;
+            public int compare(K k1, K k2) {
+                int compare = tmap.get(k1).compareTo(tmap.get(k2));
+                compare = (compare == 0) ? 1 : -compare;
+                return compare;
             }
         };
 
-        TreeMap<K, V> sorted = new TreeMap<K, V>(valueComparator);
-        sorted.putAll(tmap);
-        return sorted;
+        TreeMap<K, V> sortedByValues = new TreeMap<K, V>(valueComparator);
+        sortedByValues.putAll(tmap);
+        return sortedByValues;
     }
 
     public static String warAndPeace() throws IOException {
