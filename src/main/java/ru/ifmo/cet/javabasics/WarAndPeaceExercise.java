@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.*;
 import java.nio.charset.Charset;
-import java.util.stream.Collectors;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -13,8 +12,8 @@ import java.util.stream.Stream;
 
 public class WarAndPeaceExercise {
 
-    static List<String> finalValue = new LinkedList<String>();
-    static Map<String, Integer> wordsCount = new HashMap<String, Integer>();
+    private static List<String> finalValue = new LinkedList<String>();
+    private static Map<String, Integer> wordsCount = new HashMap<String, Integer>();
 
     public static Integer getValue(String baseValue){
         return Integer.parseInt(baseValue.split(" - ")[1]);
