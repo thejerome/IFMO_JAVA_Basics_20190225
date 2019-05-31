@@ -1,85 +1,75 @@
-public class BottleSong {
+package ru.ifmo.cet.javabasics;
 
-    private int bottle = 99;
-    private int bottleTakenAtOnce;
-    private String bottleTaken;
+import java.util.HashMap;
+import java.util.Map;
+
+public class BottleSong {
+    private int bottlesTakenAtOnce;
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
-        if ( bottleTakenAtOnce <= 0 || bottleTakenAtOnce > 99) {
-            throw new IllegalArgumentException();
-        }
-        this.bottleTakenAtOnce = bottleTakenAtOnce;
-        bottleTaken = numToString(bottleTakenAtOnce);
+        this.bottlesTakenAtOnce = bottleTakenAtOnce;
     }
-    public String getBottleSongLyrics(){
-        StringBuilder sb = new StringBuilder();
-        while (bottle >= bottleTakenAtOnce) {
-            sb.append(bottle + " bottles of beer on the wall, " + bottle + " bottles of beer.\n");
-            sb.append("Take " + bottleTaken + " down and pass around, ");
-            bottle -= bottleTakenAtOnce;
-            if (bottle == 1) {
-                sb.append(bottle + " bottle of beer on the wall.\n");
-                sb.append(bottle + " bottle of beer on the wall, " + bottle + " bottle of beer.\n");
-                sb.append("Take " + numToString(bottle) + " down and pass around, no more bottles of beer on the wall.\n");
-                bottle = 0;
-            } else if(bottle == 0) {
-                sb.append("no more bottles of beer on the wall.\n");
-            } else {
-                sb.append(bottle + " bottles of beer on the wall.\n");
+
+    public String getBottleSongLyrics() {
+        int bottles = 99;
+        String SUNum = "";
+        String BottleSongLyrics = "";
+        String BottlesBottle = "bottles";
+
+        Map<Integer, String> bottleTaken = new HashMap<Integer, String>();
+
+        bottleTaken.put(0, "");
+        bottleTaken.put(1, "one");
+        bottleTaken.put(2, "two");
+        bottleTaken.put(3, "three");
+        bottleTaken.put(4, "four");
+        bottleTaken.put(5, "five");
+        bottleTaken.put(6, "six");
+        bottleTaken.put(7, "seven");
+        bottleTaken.put(8, "eight");
+        bottleTaken.put(9, "nine");
+        bottleTaken.put(10, "ten");
+        bottleTaken.put(11, "eleven");
+        bottleTaken.put(12, "twelve");
+        bottleTaken.put(13, "thirteen");
+        bottleTaken.put(14, "fourteen");
+        bottleTaken.put(15, "fifteen");
+        bottleTaken.put(16, "sixteen");
+        bottleTaken.put(17, "seventeen");
+        bottleTaken.put(18, "eighteen");
+        bottleTaken.put(19, "nineteen");
+        bottleTaken.put(20, "twenty");
+        bottleTaken.put(30, "thirty");
+        bottleTaken.put(40, "forty");
+        bottleTaken.put(50, "fifty");
+        bottleTaken.put(60, "sixty");
+        bottleTaken.put(70, "seventy");
+        bottleTaken.put(80, "eighty");
+        bottleTaken.put(90, "ninety");
+
+        if (bottlesTakenAtOnce < 20 || bottlesTakenAtOnce % 10 == 0) {
+            SUNum = bottleTaken.get(bottlesTakenAtOnce);
+        } else SUNum = bottleTaken.get(bottlesTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
+
+        if (bottlesTakenAtOnce < 100 && bottlesTakenAtOnce > 0) {
+            while (bottles > bottlesTakenAtOnce) {
+                BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                BottleSongLyrics += "Take ";
+                if ((bottles - bottlesTakenAtOnce > 0)) {
+                    bottles -= bottlesTakenAtOnce;
+                    if (bottles == 1) BottlesBottle = "bottle";
+                    BottleSongLyrics += SUNum + " down and pass around, " + bottles + " " + BottlesBottle + " of beer on the wall.\n";
+                }
             }
+            if (bottles < 20) {
+                SUNum = bottleTaken.get(bottles);
+            } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
+            BottleSongLyrics += bottles + " " + BottlesBottle + " of beer on the wall, " + bottles + " " + BottlesBottle + " of beer.\n";
+            BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
+            BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
+            BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
+            return BottleSongLyrics;
         }
-        if (bottle < bottleTakenAtOnce && bottle > 0) {
-            sb.append(bottle + " bottles of beer on the wall, " + bottle + " bottles of beer.\n");
-            sb.append("Take " + numToString(bottle) + " down and pass around, no more bottles of beer on the wall.\n");
-            bottle = 0;
-        }
-        sb.append("No more bottles of beer on the wall, no more bottles of beer.\n");
-        sb.append("Go to the store and buy some more, 99 bottles of beer on the wall.\n");
-        return sb.toString();
+        else throw new IllegalArgumentException();
     }
-    private String numToString(int num) {
-        String[] array = new String[100];
-        array[0] = "";
-        array[1] = "one";
-        array[2] = "two";
-        array[3] = "three";
-        array[4] = "four";
-        array[5] = "five";
-        array[6] = "six";
-        array[7] = "seven";
-        array[8] = "eight";
-        array[9] = "nine";
-        array[10] = "ten";
-        array[11] = "eleven";
-        array[12] = "twelve";
-        array[13] = "thirteen";
-        array[14] = "fourteen";
-        array[15] = "fifteen";
-        array[16] = "sixteen";
-        array[17] = "seventeen";
-        array[18] = "eighteen";
-        array[19] = "nineteen";
-        array[20] = "twenty";
-        array[30] = "thirty";
-        array[40] = "forty";
-        array[50] = "fifty";
-        array[60] = "sixty";
-        array[70] = "seventy";
-        array[80] = "eighty";
-        array[90] = "ninety";
-        StringBuilder sb = new StringBuilder();
-        if (num / 10 > 1 && num % 10 != 0) {
-            sb.append(array[(num / 10) * 10]).append(" ").append(array[num % 10]);
-        }
-        if (num / 10 > 1 && num % 10 == 0) {
-            sb.append(array[(num / 10) * 10]);
-        }
-        if (num / 10 == 1) {
-            sb.append(array[num]);
-        }
-        if (num / 10 == 0) {
-            sb.append(array[num]);
-        }
-        return sb.toString();
-    }
-} 
+}
+
