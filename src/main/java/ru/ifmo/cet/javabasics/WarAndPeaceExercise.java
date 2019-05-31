@@ -11,7 +11,7 @@ import java.util.*;
 
 public class WarAndPeaceExercise {
 
-    public static String warAndPeace() {
+    public static String warAndPeace() throws IOException {
         final Path tome12Path = Paths.get("src", "main", "resources", "WAP12.txt");
         final Path tome34Path = Paths.get("src", "main", "resources", "WAP34.txt");
 
