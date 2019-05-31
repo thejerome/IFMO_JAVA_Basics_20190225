@@ -1,43 +1,75 @@
 package ru.ifmo.cet.javabasics;
 
-/**
- * Нужно реализовать констурктор и метод, возвращающий слова песни про бутылки на стене.
- * <p>
- * Слова следующие:
- * <p>
- * 99 bottles of beer on the wall, 99 bottles of beer
- * Take one down, pass it around, 98 bottles of beer
- * 98 bottles of beer on the wall, 98 bottles of beer
- * Take one down, pass it around, 97 bottles of beer
- * 97 bottles of beer on the wall, 97 bottles of beer
- * Take one down, pass it around, 96 bottles of beer
- * 96 bottles of beer on the wall, 96 bottles of beer
- * Take one down, pass it around, 95 bottles of beer
- * 95 bottles of beer on the wall, 95 bottles of beer
- * ...
- * <p>
- * 3 bottles of beer on the wall, 3 bottles of beer
- * Take one down, pass it around, 2 bottles of beer
- * 2 bottles of beer on the wall, 2 bottles of beer
- * Take one down, pass it around, 1 bottles of beer
- * 1 bottle of beer on the wall, 1 bottle of beer
- * Take one down, pass it around, no more bottles of beer on the wall
- * No more bottles of beer on the wall, no more bottles of beer
- * Go to the store and buy some more, 99 bottles of beer on the wall
- * <p>
- * Дело усложняется тем, что текст песни переменный:
- * За раз может быть взято несколько бутылок.
- * Значение передается в качестве параметра конструктора
- * Нужно ограничить возможность взятия бутылок натуральным число не более 99 бутылок за раз.
- */
-public class BottleSong {
+import java.util.HashMap;
+import java.util.Map;
 
+public class BottleSong {
+    private int bottlesTakenAtOnce;
     public BottleSong(int bottleTakenAtOnce) {
-        //TODO
+        this.bottlesTakenAtOnce = bottleTakenAtOnce;
     }
 
     public String getBottleSongLyrics() {
-        //TODO
-        throw new UnsupportedOperationException();
+        int bottles = 99;
+        String SUNum = "";
+        String BottleSongLyrics = "";
+        String BottlesBottle = "bottles";
+
+        Map<Integer, String> bottleTaken = new HashMap<Integer, String>();
+
+        bottleTaken.put(0, "");
+        bottleTaken.put(1, "one");
+        bottleTaken.put(2, "two");
+        bottleTaken.put(3, "three");
+        bottleTaken.put(4, "four");
+        bottleTaken.put(5, "five");
+        bottleTaken.put(6, "six");
+        bottleTaken.put(7, "seven");
+        bottleTaken.put(8, "eight");
+        bottleTaken.put(9, "nine");
+        bottleTaken.put(10, "ten");
+        bottleTaken.put(11, "eleven");
+        bottleTaken.put(12, "twelve");
+        bottleTaken.put(13, "thirteen");
+        bottleTaken.put(14, "fourteen");
+        bottleTaken.put(15, "fifteen");
+        bottleTaken.put(16, "sixteen");
+        bottleTaken.put(17, "seventeen");
+        bottleTaken.put(18, "eighteen");
+        bottleTaken.put(19, "nineteen");
+        bottleTaken.put(20, "twenty");
+        bottleTaken.put(30, "thirty");
+        bottleTaken.put(40, "forty");
+        bottleTaken.put(50, "fifty");
+        bottleTaken.put(60, "sixty");
+        bottleTaken.put(70, "seventy");
+        bottleTaken.put(80, "eighty");
+        bottleTaken.put(90, "ninety");
+
+        if (bottlesTakenAtOnce < 20 || bottlesTakenAtOnce % 10 == 0) {
+            SUNum = bottleTaken.get(bottlesTakenAtOnce);
+        } else SUNum = bottleTaken.get(bottlesTakenAtOnce / 10 * 10) + " " + bottleTaken.get(bottlesTakenAtOnce % 10);
+
+        if (bottlesTakenAtOnce < 100 && bottlesTakenAtOnce > 0) {
+            while (bottles > bottlesTakenAtOnce) {
+                BottleSongLyrics += bottles + " bottles of beer on the wall, " + bottles + " bottles of beer.\n";
+                BottleSongLyrics += "Take ";
+                if ((bottles - bottlesTakenAtOnce > 0)) {
+                    bottles -= bottlesTakenAtOnce;
+                    if (bottles == 1) BottlesBottle = "bottle";
+                    BottleSongLyrics += SUNum + " down and pass around, " + bottles + " " + BottlesBottle + " of beer on the wall.\n";
+                }
+            }
+            if (bottles < 20) {
+                SUNum = bottleTaken.get(bottles);
+            } else SUNum = bottleTaken.get(bottles / 10 * 10) + " " + bottleTaken.get(bottles % 10);
+            BottleSongLyrics += bottles + " " + BottlesBottle + " of beer on the wall, " + bottles + " " + BottlesBottle + " of beer.\n";
+            BottleSongLyrics += "Take " + SUNum + " down and pass around, no more bottles of beer on the wall.\n";
+            BottleSongLyrics += "No more bottles of beer on the wall, no more bottles of beer.\n";
+            BottleSongLyrics += "Go to the store and buy some more, 99 bottles of beer on the wall.\n";
+            return BottleSongLyrics;
+        }
+        else throw new IllegalArgumentException();
     }
 }
+
